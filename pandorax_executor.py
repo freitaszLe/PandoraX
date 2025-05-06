@@ -6,10 +6,11 @@ from PandoraXParser import PandoraXParser
 from PandoraXVisitor import PandoraXVisitor
 
 
-# Custom Error Listener para erros léxicos e sintáticos
 class CustomErrorListener(ErrorListener):
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
         print(f"ERRO SINTÁTICO na linha {line}, coluna {column}: {msg}")
+        sys.exit(1)
+
 
 class CustomLexer(PandoraXLexer):
     def notifyListeners(self, e):
@@ -17,10 +18,9 @@ class CustomLexer(PandoraXLexer):
         column = self._tokenStartColumn
         msg = f"ERRO LÉXICO na linha {line}, coluna {column}: símbolo inválido '{self._input.getText(self._tokenStartCharIndex, self._input.index)}'"
         print(msg)
-        super().notifyListeners(e)
+        sys.exit(1)
 
 
-# Executor da linguagem PandoraX
 class PandoraXExecutor(PandoraXVisitor):
     def __init__(self):
         self.variables = {}
@@ -29,53 +29,98 @@ class PandoraXExecutor(PandoraXVisitor):
         for statement in ctx.statement():
             self.visit(statement)
 
-    def visitInputStatement(self, ctx):
-        varName = ctx.ID().getText()
-        castType = ctx.typecast().getText()
-        prompt = ctx.STRING().getText()[1:-1]
-        val = input(prompt)
-        if castType == "inter":
-            self.variables[varName] = int(val)
-        elif castType == "strin":
-            self.variables[varName] = val
+    def visitOutputStatement(self, ctx):
+        interpolated_str = ctx.INTERPOLATED_STRING().getText()[1:-1]  # Remove < e >
+        # Processa interpolação
+        parts = []
+        current = interpolated_str
+        while True:
+            start = current.find('{')
+            end = current.find('}')
+            if start == -1 or end == -1:
+                parts.append(current)
+                break
+            parts.append(current[:start])
+            var_name = current[start+1:end]
+            parts.append(str(self.variables.get(var_name, '')))
+            current = current[end+1:]
+        print(''.join(parts))
 
-    def visitPrintStatement(self, ctx):
-        full = ctx.STRING().getText()[1:-1]
-        for key in self.variables:
-            full = full.replace(f"{{{key}}}", str(self.variables[key]))
-        print(full)
+    def visitInputStatement(self, ctx):
+        var_name = ctx.ID().getText()
+        prompt = ctx.summonCall().INTERPOLATED_STRING().getText()[1:-1]  # Remove < e >
+        user_input = input(prompt)
+        
+        if ctx.typeCast().INTER():
+            try:
+                self.variables[var_name] = int(user_input)
+            except ValueError:
+                print(f"Erro: '{user_input}' não é um número inteiro válido")
+                sys.exit(1)
+        else:  # STRIN
+            self.variables[var_name] = user_input
 
     def visitAssignment(self, ctx):
-        varName = ctx.ID().getText()
-        val = eval(self.visit(ctx.expression()), {}, self.variables)
-        self.variables[varName] = val
+        var_name = ctx.ID().getText()
+        value = self.visit(ctx.expression())
+        self.variables[var_name] = value
 
-    def visitConditional(self, ctx):
-        condition = eval(ctx.condition().getText(), {}, self.variables)
+    def visitArithmeticExpression(self, ctx):
+        left = self.visit(ctx.expression(0))
+        right = self.visit(ctx.expression(1))
+        op = ctx.getChild(1).getText()
+        
+        if op == '+': return left + right
+        if op == '-': return left - right
+        if op == '*': return left * right
+        if op == '/': return left // right  # Divisão inteira
+
+    def visitComparisonExpression(self, ctx):
+        left = self.visit(ctx.expression(0))
+        right = self.visit(ctx.expression(1))
+        op = ctx.getChild(1).getText()
+        
+        if op == '>': return left > right
+        if op == '<': return left < right
+        if op == '>=': return left >= right
+        if op == '<=': return left <= right
+        if op == '==': return left == right
+        if op == '!=': return left != right
+
+    def visitParenExpression(self, ctx):
+        return self.visit(ctx.expression())
+
+    def visitIntExpression(self, ctx):
+        return int(ctx.INT().getText())
+
+    def visitIdExpression(self, ctx):
+        var_name = ctx.ID().getText()
+        return self.variables.get(var_name, 0)
+
+    def visitConditionalStatement(self, ctx):
+        condition = self.visit(ctx.expression())
         if condition:
-            self.visit(ctx.statement(0))
-        else:
-            self.visit(ctx.statement(1))
+            self.visit(ctx.block(0))
+        elif ctx.WHENEVER() and len(ctx.block()) > 1:
+            self.visit(ctx.block(1))
 
     def visitLoopStatement(self, ctx):
-        while eval(ctx.condition().getText(), {}, self.variables):
-            for stmt in ctx.statement():
-                self.visit(stmt)
-
-    def visitExpressionStatement(self, ctx):
-        return ctx.getText()
+        while self.visit(ctx.expression()):
+            self.visit(ctx.block())
 
 
-# Execução principal
 if __name__ == "__main__":
-    input_path = "exemplo1.pandoraX"  # Caminho fixo do arquivo
+    if len(sys.argv) < 2:
+        print("Uso: python executor.py <arquivo.pandoraX>")
+        sys.exit(1)
+    
+    input_path = sys.argv[1]
     input_stream = FileStream(input_path, encoding='utf-8')
 
-    # Lexer com erro léxico tratado
     lexer = CustomLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
-
-    # Mostrar tokens
+    
+    # Mostrar tokens (opcional - para debug)
     print("=== TOKENS IDENTIFICADOS ===")
     token_stream.fill()
     for token in token_stream.tokens:
@@ -83,12 +128,14 @@ if __name__ == "__main__":
             print(f"{lexer.symbolicNames[token.type]}: '{token.text}' (linha {token.line}, coluna {token.column})")
     print("============================\n")
 
-    # Parser com erro sintático tratado
     parser = PandoraXParser(token_stream)
     parser.removeErrorListeners()
     parser.addErrorListener(CustomErrorListener())
 
-    # Interpretar
-    tree = parser.program()
-    executor = PandoraXExecutor()
-    executor.visit(tree)
+    try:
+        tree = parser.program()
+        executor = PandoraXExecutor()
+        executor.visit(tree)
+    except Exception as e:
+        print(f"Erro durante execução: {str(e)}")
+        sys.exit(1)

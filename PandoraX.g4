@@ -16,56 +16,85 @@ statement
 
 // Tipagem de variáveis PandoraX
 typeCast
-    : 'inter'
-    | 'strin'
+    : INTER
+    | STRIN
     ;
 
 // Entrada do usuário com conversão de tipo
 inputStatement
-    : ID '=' typeCast '(' summonCall ')'
+    : ID EQ typeCast LPAREN summonCall RPAREN
     ;
 
 // Saída para o usuário (string interpolada dentro de <>)
 outputStatement
-    : 'pandora.expose' '(' STRING ')' ';'?
+    : PANDORAEXPOSE LPAREN INTERPOLATED_STRING RPAREN
     ;
 
 // Condicional com when / whenever
 conditionalStatement
-    : 'when' expression ':' block ('whenever' ':' block)?
+    : WHEN expression block (WHENEVER block)?
     ;
 
 // Laço loopX
 loopStatement
-    : 'loopX' expression ':' block
+    : LOOPX expression block
     ;
 
 // Atribuição direta
 assignment
-    : ID '=' expression
+    : ID EQ expression
     ;
 
-// Bloco de múltiplas instruções
+// Bloco de múltiplas instruções entre chaves
 block
-    : statement+
+    : LBRACE statement* RBRACE
     ;
 
 // Expressões aritméticas e lógicas
 expression
-    : expression ('+' | '-' | '*' | '/') expression
-    | '(' expression ')'
-    | INT
-    | ID
+    : expression (PLUS | MINUS | MULT | DIV) expression   # arithmeticExpression
+    | expression (GT | LT | GE | LE | EQEQ | NEQ) expression # comparisonExpression
+    | LPAREN expression RPAREN                            # parenExpression
+    | INT                                                 # intExpression
+    | ID                                                  # idExpression
     ;
 
 // Chamada de summon.x(<...>)
 summonCall
-    : 'summon.x' '(' STRING ')'
+    : SUMMON LPAREN INTERPOLATED_STRING RPAREN
     ;
 
 // Tokens
 ID      : [a-zA-Z_][a-zA-Z_0-9]* ;
 INT     : [0-9]+ ;
-STRING : '<' (~'>')* '>' ; // Suporte para interpolação entre <>
+INTERPOLATED_STRING : '<' ( ~[<>{}] | '{' ID '}' )* '>' ;
 WS      : [ \t\r\n]+ -> skip ;
 COMMENT : '//' ~[\r\n]* -> skip ;
+
+// Palavras-chave
+WHEN          : 'when';
+WHENEVER      : 'whenever';
+LOOPX         : 'loopX';
+INTER         : 'inter';
+STRIN         : 'strin';
+PANDORAEXPOSE : 'pandora.expose';
+SUMMON        : 'summon.x';
+
+// Operadores
+PLUS    : '+';
+MINUS   : '-';
+MULT    : '*';
+DIV     : '/';
+EQ      : '=';
+LT      : '<';
+GT      : '>';
+LE      : '<=';
+GE      : '>=';
+EQEQ    : '==';
+NEQ     : '!=';
+
+// Delimitadores
+LPAREN  : '(';
+RPAREN  : ')';
+LBRACE  : '{';
+RBRACE  : '}';

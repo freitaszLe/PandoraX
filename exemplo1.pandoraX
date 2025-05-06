@@ -1,24 +1,26 @@
 
 
-num1 = inter(summon.x(<Digite o primeiro numero inteiro: >))
-num2 = inter(summon.x(<Digite o segundo número inteiro: >))
-texto = strin(summon.x(<Digite uma palavra: >))
+    num1 = inter(summon.x(<Digite o primeiro numero inteiro: >))
+    num2 = inter(summon.x(<Digite o segundo número inteiro: >))
+    texto = strin(summon.x(<Digite uma palavra: >))
 
 
-pandora.expose(<primeiro numero: {num1}, segundo numero: {num2} e a palavra: '{texto}'>)
+    pandora.expose(<primeiro numero: {num1}, segundo numero: {num2} e a palavra: '{texto}'>)
 
 
-when num1 > num2:
-    pandora.expose(<o primeiro numero é maior que o segundo>)
-whenever:
-    pandora.expose(<O primeiro numero não é maior que o segundo>)
+    when num1 > num2{
+        pandora.expose(<o primeiro numero é maior que o segundo>)
+    }
+    whenever{
+        pandora.expose(<O primeiro numero não é maior que o segundo>)
+    }
+
+    resultado = (num1 + num2)
+    pandora.expose(<o resultado da soma dos dois numeros: {resultado}>)
 
 
-resultado = (num1 + num2)
-pandora.expose(<o resultado da soma dos dois numeros: {resultado}>)
-
-
-contador = 0
-loopX contador < 5:
-    pandora.expose(<contador: {contador}>)
-    contador = contador + 1
+    contador = 0
+    loopX contador < 5{
+        pandora.expose(<contador: {contador}>)
+        contador = contador + 1
+    }
