@@ -1,4 +1,4 @@
-# Generated from C:/Users/Leticia/OneDrive/Desktop/myCompiler/grammar/PandoraX.g4 by ANTLR 4.13.2
+# Generated from PandoraX.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .PandoraXParser import PandoraXParser
@@ -89,12 +89,48 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PandoraXParser#expression.
-    def enterExpression(self, ctx:PandoraXParser.ExpressionContext):
+    # Enter a parse tree produced by PandoraXParser#idExpression.
+    def enterIdExpression(self, ctx:PandoraXParser.IdExpressionContext):
         pass
 
-    # Exit a parse tree produced by PandoraXParser#expression.
-    def exitExpression(self, ctx:PandoraXParser.ExpressionContext):
+    # Exit a parse tree produced by PandoraXParser#idExpression.
+    def exitIdExpression(self, ctx:PandoraXParser.IdExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#intExpression.
+    def enterIntExpression(self, ctx:PandoraXParser.IntExpressionContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#intExpression.
+    def exitIntExpression(self, ctx:PandoraXParser.IntExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#comparisonExpression.
+    def enterComparisonExpression(self, ctx:PandoraXParser.ComparisonExpressionContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#comparisonExpression.
+    def exitComparisonExpression(self, ctx:PandoraXParser.ComparisonExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#parenExpression.
+    def enterParenExpression(self, ctx:PandoraXParser.ParenExpressionContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#parenExpression.
+    def exitParenExpression(self, ctx:PandoraXParser.ParenExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#arithmeticExpression.
+    def enterArithmeticExpression(self, ctx:PandoraXParser.ArithmeticExpressionContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#arithmeticExpression.
+    def exitArithmeticExpression(self, ctx:PandoraXParser.ArithmeticExpressionContext):
         pass
 
 

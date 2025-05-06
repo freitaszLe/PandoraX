@@ -1,4 +1,4 @@
-# Generated from C:/Users/Leticia/OneDrive/Desktop/myCompiler/grammar/PandoraX.g4 by ANTLR 4.13.2
+# Generated from PandoraX.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .PandoraXParser import PandoraXParser
@@ -54,8 +54,28 @@ class PandoraXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#expression.
-    def visitExpression(self, ctx:PandoraXParser.ExpressionContext):
+    # Visit a parse tree produced by PandoraXParser#idExpression.
+    def visitIdExpression(self, ctx:PandoraXParser.IdExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#intExpression.
+    def visitIntExpression(self, ctx:PandoraXParser.IntExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#comparisonExpression.
+    def visitComparisonExpression(self, ctx:PandoraXParser.ComparisonExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#parenExpression.
+    def visitParenExpression(self, ctx:PandoraXParser.ParenExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#arithmeticExpression.
+    def visitArithmeticExpression(self, ctx:PandoraXParser.ArithmeticExpressionContext):
         return self.visitChildren(ctx)
 
 
