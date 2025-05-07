@@ -29,6 +29,11 @@ class PandoraXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PandoraXParser#summonCall.
+    def visitSummonCall(self, ctx:PandoraXParser.SummonCallContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PandoraXParser#outputStatement.
     def visitOutputStatement(self, ctx:PandoraXParser.OutputStatementContext):
         return self.visitChildren(ctx)
@@ -54,33 +59,38 @@ class PandoraXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#idExpression.
-    def visitIdExpression(self, ctx:PandoraXParser.IdExpressionContext):
+    # Visit a parse tree produced by PandoraXParser#MulDivExpr.
+    def visitMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#intExpression.
-    def visitIntExpression(self, ctx:PandoraXParser.IntExpressionContext):
+    # Visit a parse tree produced by PandoraXParser#EqualityExpr.
+    def visitEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#comparisonExpression.
-    def visitComparisonExpression(self, ctx:PandoraXParser.ComparisonExpressionContext):
+    # Visit a parse tree produced by PandoraXParser#IdExpr.
+    def visitIdExpr(self, ctx:PandoraXParser.IdExprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#parenExpression.
-    def visitParenExpression(self, ctx:PandoraXParser.ParenExpressionContext):
+    # Visit a parse tree produced by PandoraXParser#ComparisonExpr.
+    def visitComparisonExpr(self, ctx:PandoraXParser.ComparisonExprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#arithmeticExpression.
-    def visitArithmeticExpression(self, ctx:PandoraXParser.ArithmeticExpressionContext):
+    # Visit a parse tree produced by PandoraXParser#IntExpr.
+    def visitIntExpr(self, ctx:PandoraXParser.IntExprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#summonCall.
-    def visitSummonCall(self, ctx:PandoraXParser.SummonCallContext):
+    # Visit a parse tree produced by PandoraXParser#ParenExpr.
+    def visitParenExpr(self, ctx:PandoraXParser.ParenExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#AddSubExpr.
+    def visitAddSubExpr(self, ctx:PandoraXParser.AddSubExprContext):
         return self.visitChildren(ctx)
 
 
