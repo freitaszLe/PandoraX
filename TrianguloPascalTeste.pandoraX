@@ -1,30 +1,35 @@
-// Triângulo de Pascal em PandoraX - Versão Funcional
+// Triângulo de Pascal com validação de entrada
 rows = inter(summon.x(<Número de linhas: >))
 
-loopX row < rows {
-    // Espaçamento para centralizar
-    spaces = rows - row - 1
-    loopX s <= spaces {
-        pandora.expose(< >)
-        s = s + 1
-    }
-    
-    // Calcula cada número da linha
-    number = 1
-    col = 0
-    loopX col <= row {
-        pandora.expose(<{number} >)
+// Verifica se o número de linhas é válido
+when rows <= 0 {
+    pandora.expose(<Número inválido! Digite um valor maior que 0.>)
+} whenever {
+    // Cálculo e impressão do Triângulo de Pascal
+    loopX row < rows {
+        // Espaçamento para centralizar
+        spaces = rows - row - 1
+        loopX s <= spaces {
+            pandora.expose(< >)
+            s = s + 1
+        }
         
-        // Fórmula correta do Triângulo de Pascal:
-        // number = number * (row - col) / (col + 1)
-        temp = number * (row - col)
-        number = temp / (col + 1)
+        // Calcula e imprime cada número da linha
+        number = 1
+        col = 0
+        loopX col <= row {
+            pandora.expose(<{number} >)
+            
+            // Fórmula do Triângulo de Pascal:
+            temp = number * (row - col)
+            number = temp / (col + 1)
+            
+            col = col + 1
+        }
         
-        col = col + 1
-    }
-    
-    // Nova linha
-    pandora.expose(<
+        // Nova linha
+        pandora.expose(<
 >)
-    row = row + 1
+        row = row + 1
+    }
 }

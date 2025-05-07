@@ -1,13 +1,23 @@
-n = 5
-i = 0
-loopX i < n {
-    j = 0
-    pandora.expose(<linha {i}:>)
-    loopX j <= i {
-        // Cálculo do binomial com fatoriais
-        // Aqui é simbólico pois não temos função ainda
-        pandora.expose(<1 >)
-        j = j + 1
+// Configuração do número de linhas
+rows = 5  // Valor fixo (altere para testar diferentes cenários)
+
+// Verificação de validade
+when rows <= 0 {
+    pandora.expose(<Número inválido>)
+} whenever {
+    // Cálculo do Triângulo de Pascal
+    loopX row < rows {
+        number = 1
+        col = 0
+        
+        loopX col <= row {
+            // Fórmula matemática do Triângulo de Pascal:
+            temp = number * (row - col)
+            number = temp / (col + 1)
+            
+            col = col + 1
+        }
+        
+        row = row + 1
     }
-    i = i + 1
 }
