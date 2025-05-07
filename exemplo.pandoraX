@@ -1,0 +1,4 @@
+x = 42 + 3
+when x > 0 {
+    pandora.expose(<{x}>)
+}
