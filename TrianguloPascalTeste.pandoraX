@@ -1,43 +1,30 @@
-n = 5  // <- Altere esse valor para mudar a quantidade de linhas
+// Triângulo de Pascal em PandoraX - Versão Funcional
+rows = inter(summon.x(<Número de linhas: >))
 
-i = 0
-loopX i < n {
-    linha = ""
-    j = 0
-    loopX j <= i {
-        // Calcula fatorial de i
-        fi = 1
-        k = 1
-        loopX k <= i {
-            fi = fi * k
-            k = k + 1
-        }
-
-        // Calcula fatorial de j
-        fj = 1
-        k = 1
-        loopX k <= j {
-            fj = fj * k
-            k = k + 1
-        }
-
-        // Calcula fatorial de (i - j)
-        fd = 1
-        k = 1
-        dif = i - j
-        loopX k <= dif {
-            fd = fd * k
-            k = k + 1
-        }
-
-        // Calcula valor do triângulo de Pascal usando C(i, j) = i! / (j! * (i - j)!)
-        divisor = fj * fd
-        valor = fi / divisor
-
-        linha = linha + "{valor} "
-        j = j + 1
+loopX row < rows {
+    // Espaçamento para centralizar
+    spaces = rows - row - 1
+    loopX s <= spaces {
+        pandora.expose(< >)
+        s = s + 1
     }
-
-    pandora.expose(linha)
-    i = i + 1
+    
+    // Calcula cada número da linha
+    number = 1
+    col = 0
+    loopX col <= row {
+        pandora.expose(<{number} >)
+        
+        // Fórmula correta do Triângulo de Pascal:
+        // number = number * (row - col) / (col + 1)
+        temp = number * (row - col)
+        number = temp / (col + 1)
+        
+        col = col + 1
+    }
+    
+    // Nova linha
+    pandora.expose(<
+>)
+    row = row + 1
 }
