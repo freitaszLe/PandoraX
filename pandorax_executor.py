@@ -1,6 +1,8 @@
 import sys
+import os
 from antlr4 import *
 from antlr4.error.ErrorListener import ErrorListener
+from antlr4.tree.Trees import Trees
 from PandoraXLexer import PandoraXLexer
 from PandoraXParser import PandoraXParser
 from PandoraXVisitor import PandoraXVisitor
@@ -19,6 +21,58 @@ class PandoraXErrorListener(ErrorListener):
         print(f"ERRO SINTÁTICO na linha {line}, coluna {column}: {msg}")
         sys.exit(1)
 
+class PandoraXASTGenerator(PandoraXVisitor):
+    def __init__(self):
+        self.dot = ['digraph AST {', '  node [shape=box, fontname="Courier"];']
+        self.node_count = 0
+        self.parent_stack = []
+        self.result = None
+
+    def visit(self, ctx):
+        if ctx is None:
+            return None
+
+        node_name = Trees.getNodeText(ctx, ruleNames=PandoraXParser.ruleNames)
+        node_id = f'node{self.node_count}'
+        self.node_count += 1
+        
+        self.dot.append(f'  {node_id} [label="{node_name}"];')
+        
+        if self.parent_stack:
+            self.dot.append(f'  {self.parent_stack[-1]} -> {node_id};')
+        
+        self.parent_stack.append(node_id)
+        
+        # Process children
+        try:
+            if hasattr(ctx, 'children'):
+                for child in ctx.children:
+                    if isinstance(child, ParserRuleContext):
+                        self.visit(child)
+                    elif isinstance(child, TerminalNode) and child.getSymbol().type != Token.EOF:
+                        self._add_terminal_node(child)
+        except Exception as e:
+            print(f"Erro ao visitar filhos: {str(e)}")
+        
+        self.parent_stack.pop()
+        
+        if not self.parent_stack:
+            self.dot.append('}')
+            self.result = '\n'.join(self.dot)
+        
+        return self.result
+
+    def _add_terminal_node(self, terminal_node):
+        node_id = f'node{self.node_count}'
+        self.node_count += 1
+        token_text = terminal_node.getText().replace('"', '\\"')
+        self.dot.append(f'  {node_id} [label="{token_text}", shape=ellipse, color=blue];')
+        if self.parent_stack:
+            self.dot.append(f'  {self.parent_stack[-1]} -> {node_id};')
+
+    def get_dot(self):
+        return self.result
+    
 class PandoraXExecutor(PandoraXVisitor):
     def __init__(self):
         self.variables = {}
@@ -147,8 +201,23 @@ if __name__ == "__main__":
     
     try:
         tree = parser.program()
+        
+        # Geração da AST (nova funcionalidade)
+        ast_generator = PandoraXASTGenerator()
+        ast_generator.visit(tree)  # Isso agora popula o resultado automaticamente
+        dot_code = ast_generator.get_dot()
+        
+        # Salva o arquivo .dot com o mesmo nome do arquivo de entrada
+        base_name = os.path.splitext(sys.argv[1])[0]
+        dot_file = f"{base_name}_ast.dot"
+        with open(dot_file, "w") as f:
+            f.write(dot_code)
+        print(f"\nArquivo AST gerado: {dot_file}")
+        
+        # Execução normal do código PandoraX
         executor = PandoraXExecutor()
         executor.visit(tree)
+        
     except Exception as e:
         print(f"Erro durante execução: {str(e)}")
         sys.exit(1)
