@@ -10,51 +10,42 @@ statement
     | assignment
     ;
 
-// Tipos de cast
 typeCast: INTER | STRIN;
 
-// Declaração de entrada
 inputStatement
     : ID EQ typeCast LPAREN SUMMON LPAREN INTERPOLATED_STRING RPAREN RPAREN
     ;
 
-// Chamada summon.x
-summonCall
-    : SUMMON LPAREN INTERPOLATED_STRING RPAREN
-    ;
-
-// Saída
 outputStatement
     : PANDORAEXPOSE LPAREN INTERPOLATED_STRING RPAREN
     ;
 
-// Condicionais
 conditionalStatement
     : WHEN expression block (WHENEVER block)?
     ;
 
-// Loops
 loopStatement
     : LOOPX expression block
     ;
 
-// Atribuição
 assignment
     : ID EQ expression
     ;
 
-// Bloco de código
 block: LBRACE statement* RBRACE;
 
-// Expressões
 expression
-    : expression (MULT | DIV) expression       # MulDivExpr
-    | expression (PLUS | MINUS) expression     # AddSubExpr
-    | expression (GT | LT | GE | LE) expression # ComparisonExpr
-    | expression (EQEQ | NEQ) expression       # EqualityExpr
-    | LPAREN expression RPAREN                 # ParenExpr
-    | INT                                      # IntExpr
-    | ID                                       # IdExpr
+    : expression (MULT | DIV) expression           # MulDivExpr
+    | expression (PLUS | MINUS) expression         # AddSubExpr
+    | expression (GT | LT | GE | LE) expression    # ComparisonExpr
+    | expression (EQEQ | NEQ) expression           # EqualityExpr
+    | expression AND expression                    # AndExpr
+    | expression OR expression                     # OrExpr
+    | NOT expression                               # NotExpr
+    | LPAREN expression RPAREN                     # ParenExpr
+    | INT                                          # IntExpr
+    | BOOL                                         # BoolExpr
+    | ID                                           # IdExpr
     ;
 
 // Tokens
@@ -65,9 +56,15 @@ WHENEVER: 'whenever';
 LOOPX: 'loopX';
 PANDORAEXPOSE: 'pandora.expose';
 SUMMON: 'summon.x';
+AND: 'and';
+OR: 'or';
+NOT: 'not';
+TRUE: 'true';
+FALSE: 'false';
 
 ID: [a-zA-Z_][a-zA-Z_0-9]*;
 INT: [0-9]+;
+BOOL: TRUE | FALSE;
 INTERPOLATED_STRING: '<' ( ~[<>{}] | '{' ID '}' )* '>';
 
 PLUS: '+';

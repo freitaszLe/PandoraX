@@ -1,0 +1,13 @@
+n = 5
+i = 0
+loopX i < n {
+    j = 0
+    pandora.expose(<linha {i}:>)
+    loopX j <= i {
+        // Cálculo do binomial com fatoriais
+        // Aqui é simbólico pois não temos função ainda
+        pandora.expose(<1 >)
+        j = j + 1
+    }
+    i = i + 1
+}

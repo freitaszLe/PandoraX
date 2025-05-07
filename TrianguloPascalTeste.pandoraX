@@ -1,0 +1,43 @@
+n = 5  // <- Altere esse valor para mudar a quantidade de linhas
+
+i = 0
+loopX i < n {
+    linha = ""
+    j = 0
+    loopX j <= i {
+        // Calcula fatorial de i
+        fi = 1
+        k = 1
+        loopX k <= i {
+            fi = fi * k
+            k = k + 1
+        }
+
+        // Calcula fatorial de j
+        fj = 1
+        k = 1
+        loopX k <= j {
+            fj = fj * k
+            k = k + 1
+        }
+
+        // Calcula fatorial de (i - j)
+        fd = 1
+        k = 1
+        dif = i - j
+        loopX k <= dif {
+            fd = fd * k
+            k = k + 1
+        }
+
+        // Calcula valor do triângulo de Pascal usando C(i, j) = i! / (j! * (i - j)!)
+        divisor = fj * fd
+        valor = fi / divisor
+
+        linha = linha + "{valor} "
+        j = j + 1
+    }
+
+    pandora.expose(linha)
+    i = i + 1
+}
