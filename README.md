@@ -26,6 +26,11 @@ O objetivo principal deste projeto é criar um compilador que leia o código-fon
 1. *Clonar o repositório:*
    ```bash
    git clone https://github.com/seu-usuario/pandora-compilador.git
-2. *Executar:*
+2. *Executar (+ gera dot):*
    ```bash
-   python pandoraX_executor.py
+   python pandoraX_executor.py NomeDoArquivo.pandoraX
+
+2. *Gerar árvore:*
+   ```bash
+   dot -Tpng NomeDoArquivo_ast.dot -o ast.png && start ast.png
+
