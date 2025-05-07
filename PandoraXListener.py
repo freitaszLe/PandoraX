@@ -44,6 +44,15 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PandoraXParser#summonCall.
+    def enterSummonCall(self, ctx:PandoraXParser.SummonCallContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#summonCall.
+    def exitSummonCall(self, ctx:PandoraXParser.SummonCallContext):
+        pass
+
+
     # Enter a parse tree produced by PandoraXParser#outputStatement.
     def enterOutputStatement(self, ctx:PandoraXParser.OutputStatementContext):
         pass
@@ -89,57 +98,66 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PandoraXParser#idExpression.
-    def enterIdExpression(self, ctx:PandoraXParser.IdExpressionContext):
+    # Enter a parse tree produced by PandoraXParser#MulDivExpr.
+    def enterMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
         pass
 
-    # Exit a parse tree produced by PandoraXParser#idExpression.
-    def exitIdExpression(self, ctx:PandoraXParser.IdExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by PandoraXParser#intExpression.
-    def enterIntExpression(self, ctx:PandoraXParser.IntExpressionContext):
-        pass
-
-    # Exit a parse tree produced by PandoraXParser#intExpression.
-    def exitIntExpression(self, ctx:PandoraXParser.IntExpressionContext):
+    # Exit a parse tree produced by PandoraXParser#MulDivExpr.
+    def exitMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
         pass
 
 
-    # Enter a parse tree produced by PandoraXParser#comparisonExpression.
-    def enterComparisonExpression(self, ctx:PandoraXParser.ComparisonExpressionContext):
+    # Enter a parse tree produced by PandoraXParser#EqualityExpr.
+    def enterEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
         pass
 
-    # Exit a parse tree produced by PandoraXParser#comparisonExpression.
-    def exitComparisonExpression(self, ctx:PandoraXParser.ComparisonExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by PandoraXParser#parenExpression.
-    def enterParenExpression(self, ctx:PandoraXParser.ParenExpressionContext):
-        pass
-
-    # Exit a parse tree produced by PandoraXParser#parenExpression.
-    def exitParenExpression(self, ctx:PandoraXParser.ParenExpressionContext):
+    # Exit a parse tree produced by PandoraXParser#EqualityExpr.
+    def exitEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
         pass
 
 
-    # Enter a parse tree produced by PandoraXParser#arithmeticExpression.
-    def enterArithmeticExpression(self, ctx:PandoraXParser.ArithmeticExpressionContext):
+    # Enter a parse tree produced by PandoraXParser#IdExpr.
+    def enterIdExpr(self, ctx:PandoraXParser.IdExprContext):
         pass
 
-    # Exit a parse tree produced by PandoraXParser#arithmeticExpression.
-    def exitArithmeticExpression(self, ctx:PandoraXParser.ArithmeticExpressionContext):
+    # Exit a parse tree produced by PandoraXParser#IdExpr.
+    def exitIdExpr(self, ctx:PandoraXParser.IdExprContext):
         pass
 
 
-    # Enter a parse tree produced by PandoraXParser#summonCall.
-    def enterSummonCall(self, ctx:PandoraXParser.SummonCallContext):
+    # Enter a parse tree produced by PandoraXParser#ComparisonExpr.
+    def enterComparisonExpr(self, ctx:PandoraXParser.ComparisonExprContext):
         pass
 
-    # Exit a parse tree produced by PandoraXParser#summonCall.
-    def exitSummonCall(self, ctx:PandoraXParser.SummonCallContext):
+    # Exit a parse tree produced by PandoraXParser#ComparisonExpr.
+    def exitComparisonExpr(self, ctx:PandoraXParser.ComparisonExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#IntExpr.
+    def enterIntExpr(self, ctx:PandoraXParser.IntExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#IntExpr.
+    def exitIntExpr(self, ctx:PandoraXParser.IntExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#ParenExpr.
+    def enterParenExpr(self, ctx:PandoraXParser.ParenExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#ParenExpr.
+    def exitParenExpr(self, ctx:PandoraXParser.ParenExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#AddSubExpr.
+    def enterAddSubExpr(self, ctx:PandoraXParser.AddSubExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#AddSubExpr.
+    def exitAddSubExpr(self, ctx:PandoraXParser.AddSubExprContext):
         pass
 
 
