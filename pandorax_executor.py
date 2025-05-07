@@ -29,7 +29,6 @@ class PandoraXExecutor(PandoraXVisitor):
 
     def visitInputStatement(self, ctx):
         var_name = ctx.ID().getText()
-        # Encontra o INTERPOLATED_STRING na estrutura
         for i in range(ctx.getChildCount()):
             if isinstance(ctx.getChild(i), TerminalNode) and ctx.getChild(i).getSymbol().type == lexer.INTERPOLATED_STRING:
                 prompt = ctx.getChild(i).getText()[1:-1]
@@ -92,14 +91,33 @@ class PandoraXExecutor(PandoraXVisitor):
         if op == '==': return left == right
         if op == '!=': return left != right
 
+    def visitAndExpr(self, ctx):
+        left = self.visit(ctx.expression(0))
+        right = self.visit(ctx.expression(1))
+        return left and right
+
+    def visitOrExpr(self, ctx):
+        left = self.visit(ctx.expression(0))
+        right = self.visit(ctx.expression(1))
+        return left or right
+
+    def visitNotExpr(self, ctx):
+        return not self.visit(ctx.expression())
+
     def visitParenExpr(self, ctx):
         return self.visit(ctx.expression())
 
     def visitIntExpr(self, ctx):
         return int(ctx.INT().getText())
 
+    def visitBoolExpr(self, ctx):
+        return ctx.BOOL().getText() == 'true'
+
     def visitIdExpr(self, ctx):
-        return self.variables.get(ctx.ID().getText(), 0)
+        val = self.variables.get(ctx.ID().getText())
+        if isinstance(val, bool):
+            return val
+        return val if val is not None else 0
 
     def visitConditionalStatement(self, ctx):
         if self.visit(ctx.expression()):
@@ -120,10 +138,7 @@ if __name__ == "__main__":
     lexer = PandoraXLexer(input_stream)
     stream = CommonTokenStream(lexer)
     
-    # Preenche o stream com todos os tokens
     stream.fill()
-    
-    # Mostra os tokens antes de executar
     print_tokens(stream, lexer)
     
     parser = PandoraXParser(stream)

@@ -1,0 +1,27 @@
+// Classificação de Triângulos com valores fixos em PandoraX
+
+a = 3
+b = 4
+c = 5
+
+when a <= 0 or b <= 0 or c <= 0 {
+    pandora.expose(<Erro: medidas devem ser maiores que zero.>)
+}
+whenever {
+    when (a + b > c) and (a + c > b) and (b + c > a) {
+        when a == b and b == c {
+            pandora.expose(<Triângulo equilátero válido>)
+        }
+        whenever {
+            when a == b or a == c or b == c {
+                pandora.expose(<Triângulo isósceles válido>)
+            }
+            whenever {
+                pandora.expose(<Triângulo escaleno válido>)
+            }
+        }
+    }
+    whenever {
+        pandora.expose(<Medidas inválidas>)
+    }
+}

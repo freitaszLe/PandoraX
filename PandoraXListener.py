@@ -44,15 +44,6 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PandoraXParser#summonCall.
-    def enterSummonCall(self, ctx:PandoraXParser.SummonCallContext):
-        pass
-
-    # Exit a parse tree produced by PandoraXParser#summonCall.
-    def exitSummonCall(self, ctx:PandoraXParser.SummonCallContext):
-        pass
-
-
     # Enter a parse tree produced by PandoraXParser#outputStatement.
     def enterOutputStatement(self, ctx:PandoraXParser.OutputStatementContext):
         pass
@@ -98,6 +89,24 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PandoraXParser#AndExpr.
+    def enterAndExpr(self, ctx:PandoraXParser.AndExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#AndExpr.
+    def exitAndExpr(self, ctx:PandoraXParser.AndExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#BoolExpr.
+    def enterBoolExpr(self, ctx:PandoraXParser.BoolExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#BoolExpr.
+    def exitBoolExpr(self, ctx:PandoraXParser.BoolExprContext):
+        pass
+
+
     # Enter a parse tree produced by PandoraXParser#MulDivExpr.
     def enterMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
         pass
@@ -134,6 +143,15 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PandoraXParser#NotExpr.
+    def enterNotExpr(self, ctx:PandoraXParser.NotExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#NotExpr.
+    def exitNotExpr(self, ctx:PandoraXParser.NotExprContext):
+        pass
+
+
     # Enter a parse tree produced by PandoraXParser#IntExpr.
     def enterIntExpr(self, ctx:PandoraXParser.IntExprContext):
         pass
@@ -158,6 +176,15 @@ class PandoraXListener(ParseTreeListener):
 
     # Exit a parse tree produced by PandoraXParser#AddSubExpr.
     def exitAddSubExpr(self, ctx:PandoraXParser.AddSubExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#OrExpr.
+    def enterOrExpr(self, ctx:PandoraXParser.OrExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#OrExpr.
+    def exitOrExpr(self, ctx:PandoraXParser.OrExprContext):
         pass
 
 
