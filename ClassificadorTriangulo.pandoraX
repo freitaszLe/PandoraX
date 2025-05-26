@@ -1,8 +1,8 @@
 // Classificação de Triângulos com valores fixos em PandoraX
 
-a = 3
-b = 4
-c = 5
+inter a = 3
+inter b = 4
+inter c = 5
 
 when a <= 0 or b <= 0 or c <= 0 {
     pandora.expose(<Erro: medidas devem ser maiores que zero.>)

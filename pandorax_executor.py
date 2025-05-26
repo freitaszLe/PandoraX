@@ -6,6 +6,7 @@ from antlr4.tree.Trees import Trees
 from PandoraXLexer import PandoraXLexer
 from PandoraXParser import PandoraXParser
 from PandoraXVisitor import PandoraXVisitor
+from PandoraXSemanticAnalyzer import PandoraXSemanticAnalyzer
 
 def print_tokens(token_stream, lexer):
     print("\n=== TOKENS IDENTIFICADOS ===")
@@ -81,25 +82,6 @@ class PandoraXExecutor(PandoraXVisitor):
         for stmt in ctx.statement():
             self.visit(stmt)
 
-    def visitInputStatement(self, ctx):
-        var_name = ctx.ID().getText()
-        for i in range(ctx.getChildCount()):
-            if isinstance(ctx.getChild(i), TerminalNode) and ctx.getChild(i).getSymbol().type == lexer.INTERPOLATED_STRING:
-                prompt = ctx.getChild(i).getText()[1:-1]
-                break
-        else:
-            prompt = ""
-        
-        user_input = input(prompt)
-        
-        if ctx.typeCast().INTER():
-            try:
-                self.variables[var_name] = int(user_input)
-            except ValueError:
-                print(f"Erro: '{user_input}' não é um número inteiro válido")
-                sys.exit(1)
-        else:
-            self.variables[var_name] = user_input
 
     def visitOutputStatement(self, ctx):
         text = ctx.INTERPOLATED_STRING().getText()[1:-1]
@@ -214,6 +196,21 @@ if __name__ == "__main__":
             f.write(dot_code)
         print(f"\nArquivo AST gerado: {dot_file}")
         
+
+                # Análise semântica
+        semantic_analyzer = PandoraXSemanticAnalyzer()
+        errors, log = semantic_analyzer.visit(tree)
+
+        print("\n=== LOG DE ANÁLISE SEMÂNTICA ===")
+        for entry in log:
+            print(entry)
+
+        if errors:
+            print("\n=== ERROS SEMÂNTICOS DETECTADOS ===")
+            for err in errors:
+                print(f"Erro: {err}")
+            sys.exit(1)
+
         # Execução normal do código PandoraX
         executor = PandoraXExecutor()
         executor.visit(tree)

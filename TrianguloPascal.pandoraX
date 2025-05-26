@@ -1,5 +1,6 @@
 // Configuração do número de linhas
-rows = 5  // Valor fixo (altere para testar diferentes cenários)
+inter rows = 5  // Valor fixo (altere para testar diferentes cenários)
+
 
 // Verificação de validade
 when rows <= 0 {

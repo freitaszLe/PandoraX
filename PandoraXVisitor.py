@@ -19,13 +19,13 @@ class PandoraXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#typeCast.
-    def visitTypeCast(self, ctx:PandoraXParser.TypeCastContext):
+    # Visit a parse tree produced by PandoraXParser#declaration.
+    def visitDeclaration(self, ctx:PandoraXParser.DeclarationContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#inputStatement.
-    def visitInputStatement(self, ctx:PandoraXParser.InputStatementContext):
+    # Visit a parse tree produced by PandoraXParser#typeCast.
+    def visitTypeCast(self, ctx:PandoraXParser.TypeCastContext):
         return self.visitChildren(ctx)
 
 

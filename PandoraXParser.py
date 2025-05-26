@@ -10,42 +10,45 @@ else:
 
 def serializedATN():
     return [
-        4,1,33,112,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,33,119,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,1,0,5,0,22,8,0,10,0,12,0,25,9,0,1,0,1,
-        0,1,1,1,1,1,1,1,1,1,1,3,1,34,8,1,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,
-        1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,3,5,58,8,
-        5,1,6,1,6,1,6,1,6,1,7,1,7,1,7,1,7,1,8,1,8,5,8,70,8,8,10,8,12,8,73,
-        9,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,3,9,87,8,9,1,
-        9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,
-        9,1,9,5,9,107,8,9,10,9,12,9,110,9,9,1,9,0,1,18,10,0,2,4,6,8,10,12,
-        14,16,18,0,5,1,0,1,2,1,0,19,20,1,0,17,18,1,0,22,25,1,0,26,27,118,
-        0,23,1,0,0,0,2,33,1,0,0,0,4,35,1,0,0,0,6,37,1,0,0,0,8,47,1,0,0,0,
-        10,52,1,0,0,0,12,59,1,0,0,0,14,63,1,0,0,0,16,67,1,0,0,0,18,86,1,
-        0,0,0,20,22,3,2,1,0,21,20,1,0,0,0,22,25,1,0,0,0,23,21,1,0,0,0,23,
-        24,1,0,0,0,24,26,1,0,0,0,25,23,1,0,0,0,26,27,5,0,0,1,27,1,1,0,0,
-        0,28,34,3,6,3,0,29,34,3,8,4,0,30,34,3,10,5,0,31,34,3,12,6,0,32,34,
-        3,14,7,0,33,28,1,0,0,0,33,29,1,0,0,0,33,30,1,0,0,0,33,31,1,0,0,0,
-        33,32,1,0,0,0,34,3,1,0,0,0,35,36,7,0,0,0,36,5,1,0,0,0,37,38,5,13,
-        0,0,38,39,5,21,0,0,39,40,3,4,2,0,40,41,5,28,0,0,41,42,5,7,0,0,42,
-        43,5,28,0,0,43,44,5,16,0,0,44,45,5,29,0,0,45,46,5,29,0,0,46,7,1,
-        0,0,0,47,48,5,6,0,0,48,49,5,28,0,0,49,50,5,16,0,0,50,51,5,29,0,0,
-        51,9,1,0,0,0,52,53,5,3,0,0,53,54,3,18,9,0,54,57,3,16,8,0,55,56,5,
-        4,0,0,56,58,3,16,8,0,57,55,1,0,0,0,57,58,1,0,0,0,58,11,1,0,0,0,59,
-        60,5,5,0,0,60,61,3,18,9,0,61,62,3,16,8,0,62,13,1,0,0,0,63,64,5,13,
-        0,0,64,65,5,21,0,0,65,66,3,18,9,0,66,15,1,0,0,0,67,71,5,30,0,0,68,
-        70,3,2,1,0,69,68,1,0,0,0,70,73,1,0,0,0,71,69,1,0,0,0,71,72,1,0,0,
-        0,72,74,1,0,0,0,73,71,1,0,0,0,74,75,5,31,0,0,75,17,1,0,0,0,76,77,
-        6,9,-1,0,77,78,5,10,0,0,78,87,3,18,9,5,79,80,5,28,0,0,80,81,3,18,
-        9,0,81,82,5,29,0,0,82,87,1,0,0,0,83,87,5,14,0,0,84,87,5,15,0,0,85,
-        87,5,13,0,0,86,76,1,0,0,0,86,79,1,0,0,0,86,83,1,0,0,0,86,84,1,0,
-        0,0,86,85,1,0,0,0,87,108,1,0,0,0,88,89,10,11,0,0,89,90,7,1,0,0,90,
-        107,3,18,9,12,91,92,10,10,0,0,92,93,7,2,0,0,93,107,3,18,9,11,94,
-        95,10,9,0,0,95,96,7,3,0,0,96,107,3,18,9,10,97,98,10,8,0,0,98,99,
-        7,4,0,0,99,107,3,18,9,9,100,101,10,7,0,0,101,102,5,8,0,0,102,107,
-        3,18,9,8,103,104,10,6,0,0,104,105,5,9,0,0,105,107,3,18,9,7,106,88,
-        1,0,0,0,106,91,1,0,0,0,106,94,1,0,0,0,106,97,1,0,0,0,106,100,1,0,
-        0,0,106,103,1,0,0,0,107,110,1,0,0,0,108,106,1,0,0,0,108,109,1,0,
-        0,0,109,19,1,0,0,0,110,108,1,0,0,0,7,23,33,57,71,86,106,108
+        0,1,1,1,1,1,1,1,1,1,1,3,1,34,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,
+        1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,51,8,2,1,3,1,3,1,4,1,4,1,4,1,4,1,
+        4,1,5,1,5,1,5,1,5,1,5,3,5,65,8,5,1,6,1,6,1,6,1,6,1,7,1,7,1,7,1,7,
+        1,8,1,8,5,8,77,8,8,10,8,12,8,80,9,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,
+        1,9,1,9,1,9,1,9,1,9,3,9,94,8,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,
+        9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,5,9,114,8,9,10,9,12,9,117,
+        9,9,1,9,0,1,18,10,0,2,4,6,8,10,12,14,16,18,0,5,1,0,1,2,1,0,19,20,
+        1,0,17,18,1,0,22,25,1,0,26,27,126,0,23,1,0,0,0,2,33,1,0,0,0,4,50,
+        1,0,0,0,6,52,1,0,0,0,8,54,1,0,0,0,10,59,1,0,0,0,12,66,1,0,0,0,14,
+        70,1,0,0,0,16,74,1,0,0,0,18,93,1,0,0,0,20,22,3,2,1,0,21,20,1,0,0,
+        0,22,25,1,0,0,0,23,21,1,0,0,0,23,24,1,0,0,0,24,26,1,0,0,0,25,23,
+        1,0,0,0,26,27,5,0,0,1,27,1,1,0,0,0,28,34,3,4,2,0,29,34,3,8,4,0,30,
+        34,3,10,5,0,31,34,3,12,6,0,32,34,3,14,7,0,33,28,1,0,0,0,33,29,1,
+        0,0,0,33,30,1,0,0,0,33,31,1,0,0,0,33,32,1,0,0,0,34,3,1,0,0,0,35,
+        36,3,6,3,0,36,37,5,13,0,0,37,38,5,21,0,0,38,39,3,18,9,0,39,51,1,
+        0,0,0,40,41,5,13,0,0,41,42,5,21,0,0,42,43,3,6,3,0,43,44,5,28,0,0,
+        44,45,5,7,0,0,45,46,5,28,0,0,46,47,5,16,0,0,47,48,5,29,0,0,48,49,
+        5,29,0,0,49,51,1,0,0,0,50,35,1,0,0,0,50,40,1,0,0,0,51,5,1,0,0,0,
+        52,53,7,0,0,0,53,7,1,0,0,0,54,55,5,6,0,0,55,56,5,28,0,0,56,57,5,
+        16,0,0,57,58,5,29,0,0,58,9,1,0,0,0,59,60,5,3,0,0,60,61,3,18,9,0,
+        61,64,3,16,8,0,62,63,5,4,0,0,63,65,3,16,8,0,64,62,1,0,0,0,64,65,
+        1,0,0,0,65,11,1,0,0,0,66,67,5,5,0,0,67,68,3,18,9,0,68,69,3,16,8,
+        0,69,13,1,0,0,0,70,71,5,13,0,0,71,72,5,21,0,0,72,73,3,18,9,0,73,
+        15,1,0,0,0,74,78,5,30,0,0,75,77,3,2,1,0,76,75,1,0,0,0,77,80,1,0,
+        0,0,78,76,1,0,0,0,78,79,1,0,0,0,79,81,1,0,0,0,80,78,1,0,0,0,81,82,
+        5,31,0,0,82,17,1,0,0,0,83,84,6,9,-1,0,84,85,5,10,0,0,85,94,3,18,
+        9,5,86,87,5,28,0,0,87,88,3,18,9,0,88,89,5,29,0,0,89,94,1,0,0,0,90,
+        94,5,14,0,0,91,94,5,15,0,0,92,94,5,13,0,0,93,83,1,0,0,0,93,86,1,
+        0,0,0,93,90,1,0,0,0,93,91,1,0,0,0,93,92,1,0,0,0,94,115,1,0,0,0,95,
+        96,10,11,0,0,96,97,7,1,0,0,97,114,3,18,9,12,98,99,10,10,0,0,99,100,
+        7,2,0,0,100,114,3,18,9,11,101,102,10,9,0,0,102,103,7,3,0,0,103,114,
+        3,18,9,10,104,105,10,8,0,0,105,106,7,4,0,0,106,114,3,18,9,9,107,
+        108,10,7,0,0,108,109,5,8,0,0,109,114,3,18,9,8,110,111,10,6,0,0,111,
+        112,5,9,0,0,112,114,3,18,9,7,113,95,1,0,0,0,113,98,1,0,0,0,113,101,
+        1,0,0,0,113,104,1,0,0,0,113,107,1,0,0,0,113,110,1,0,0,0,114,117,
+        1,0,0,0,115,113,1,0,0,0,115,116,1,0,0,0,116,19,1,0,0,0,117,115,1,
+        0,0,0,8,23,33,50,64,78,93,113,115
     ]
 
 class PandoraXParser ( Parser ):
@@ -74,8 +77,8 @@ class PandoraXParser ( Parser ):
 
     RULE_program = 0
     RULE_statement = 1
-    RULE_typeCast = 2
-    RULE_inputStatement = 3
+    RULE_declaration = 2
+    RULE_typeCast = 3
     RULE_outputStatement = 4
     RULE_conditionalStatement = 5
     RULE_loopStatement = 6
@@ -83,9 +86,9 @@ class PandoraXParser ( Parser ):
     RULE_block = 8
     RULE_expression = 9
 
-    ruleNames =  [ "program", "statement", "typeCast", "inputStatement", 
-                   "outputStatement", "conditionalStatement", "loopStatement", 
-                   "assignment", "block", "expression" ]
+    ruleNames =  [ "program", "statement", "declaration", "typeCast", "outputStatement", 
+                   "conditionalStatement", "loopStatement", "assignment", 
+                   "block", "expression" ]
 
     EOF = Token.EOF
     INTER=1
@@ -178,7 +181,7 @@ class PandoraXParser ( Parser ):
             self.state = 23
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 8296) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 8302) != 0):
                 self.state = 20
                 self.statement()
                 self.state = 25
@@ -203,8 +206,8 @@ class PandoraXParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def inputStatement(self):
-            return self.getTypedRuleContext(PandoraXParser.InputStatementContext,0)
+        def declaration(self):
+            return self.getTypedRuleContext(PandoraXParser.DeclarationContext,0)
 
 
         def outputStatement(self):
@@ -254,7 +257,7 @@ class PandoraXParser ( Parser ):
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 28
-                self.inputStatement()
+                self.declaration()
                 pass
 
             elif la_ == 2:
@@ -281,6 +284,117 @@ class PandoraXParser ( Parser ):
                 self.assignment()
                 pass
 
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class DeclarationContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def typeCast(self):
+            return self.getTypedRuleContext(PandoraXParser.TypeCastContext,0)
+
+
+        def ID(self):
+            return self.getToken(PandoraXParser.ID, 0)
+
+        def EQ(self):
+            return self.getToken(PandoraXParser.EQ, 0)
+
+        def expression(self):
+            return self.getTypedRuleContext(PandoraXParser.ExpressionContext,0)
+
+
+        def LPAREN(self, i:int=None):
+            if i is None:
+                return self.getTokens(PandoraXParser.LPAREN)
+            else:
+                return self.getToken(PandoraXParser.LPAREN, i)
+
+        def SUMMON(self):
+            return self.getToken(PandoraXParser.SUMMON, 0)
+
+        def INTERPOLATED_STRING(self):
+            return self.getToken(PandoraXParser.INTERPOLATED_STRING, 0)
+
+        def RPAREN(self, i:int=None):
+            if i is None:
+                return self.getTokens(PandoraXParser.RPAREN)
+            else:
+                return self.getToken(PandoraXParser.RPAREN, i)
+
+        def getRuleIndex(self):
+            return PandoraXParser.RULE_declaration
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterDeclaration" ):
+                listener.enterDeclaration(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitDeclaration" ):
+                listener.exitDeclaration(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDeclaration" ):
+                return visitor.visitDeclaration(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def declaration(self):
+
+        localctx = PandoraXParser.DeclarationContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 4, self.RULE_declaration)
+        try:
+            self.state = 50
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [1, 2]:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 35
+                self.typeCast()
+                self.state = 36
+                self.match(PandoraXParser.ID)
+                self.state = 37
+                self.match(PandoraXParser.EQ)
+                self.state = 38
+                self.expression(0)
+                pass
+            elif token in [13]:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 40
+                self.match(PandoraXParser.ID)
+                self.state = 41
+                self.match(PandoraXParser.EQ)
+                self.state = 42
+                self.typeCast()
+                self.state = 43
+                self.match(PandoraXParser.LPAREN)
+                self.state = 44
+                self.match(PandoraXParser.SUMMON)
+                self.state = 45
+                self.match(PandoraXParser.LPAREN)
+                self.state = 46
+                self.match(PandoraXParser.INTERPOLATED_STRING)
+                self.state = 47
+                self.match(PandoraXParser.RPAREN)
+                self.state = 48
+                self.match(PandoraXParser.RPAREN)
+                pass
+            else:
+                raise NoViableAltException(self)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -327,105 +441,17 @@ class PandoraXParser ( Parser ):
     def typeCast(self):
 
         localctx = PandoraXParser.TypeCastContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 4, self.RULE_typeCast)
+        self.enterRule(localctx, 6, self.RULE_typeCast)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 35
+            self.state = 52
             _la = self._input.LA(1)
             if not(_la==1 or _la==2):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-        except RecognitionException as re:
-            localctx.exception = re
-            self._errHandler.reportError(self, re)
-            self._errHandler.recover(self, re)
-        finally:
-            self.exitRule()
-        return localctx
-
-
-    class InputStatementContext(ParserRuleContext):
-        __slots__ = 'parser'
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
-            super().__init__(parent, invokingState)
-            self.parser = parser
-
-        def ID(self):
-            return self.getToken(PandoraXParser.ID, 0)
-
-        def EQ(self):
-            return self.getToken(PandoraXParser.EQ, 0)
-
-        def typeCast(self):
-            return self.getTypedRuleContext(PandoraXParser.TypeCastContext,0)
-
-
-        def LPAREN(self, i:int=None):
-            if i is None:
-                return self.getTokens(PandoraXParser.LPAREN)
-            else:
-                return self.getToken(PandoraXParser.LPAREN, i)
-
-        def SUMMON(self):
-            return self.getToken(PandoraXParser.SUMMON, 0)
-
-        def INTERPOLATED_STRING(self):
-            return self.getToken(PandoraXParser.INTERPOLATED_STRING, 0)
-
-        def RPAREN(self, i:int=None):
-            if i is None:
-                return self.getTokens(PandoraXParser.RPAREN)
-            else:
-                return self.getToken(PandoraXParser.RPAREN, i)
-
-        def getRuleIndex(self):
-            return PandoraXParser.RULE_inputStatement
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterInputStatement" ):
-                listener.enterInputStatement(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitInputStatement" ):
-                listener.exitInputStatement(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitInputStatement" ):
-                return visitor.visitInputStatement(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-
-
-    def inputStatement(self):
-
-        localctx = PandoraXParser.InputStatementContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_inputStatement)
-        try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 37
-            self.match(PandoraXParser.ID)
-            self.state = 38
-            self.match(PandoraXParser.EQ)
-            self.state = 39
-            self.typeCast()
-            self.state = 40
-            self.match(PandoraXParser.LPAREN)
-            self.state = 41
-            self.match(PandoraXParser.SUMMON)
-            self.state = 42
-            self.match(PandoraXParser.LPAREN)
-            self.state = 43
-            self.match(PandoraXParser.INTERPOLATED_STRING)
-            self.state = 44
-            self.match(PandoraXParser.RPAREN)
-            self.state = 45
-            self.match(PandoraXParser.RPAREN)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -480,13 +506,13 @@ class PandoraXParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_outputStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 47
+            self.state = 54
             self.match(PandoraXParser.PANDORAEXPOSE)
-            self.state = 48
+            self.state = 55
             self.match(PandoraXParser.LPAREN)
-            self.state = 49
+            self.state = 56
             self.match(PandoraXParser.INTERPOLATED_STRING)
-            self.state = 50
+            self.state = 57
             self.match(PandoraXParser.RPAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -548,19 +574,19 @@ class PandoraXParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 52
+            self.state = 59
             self.match(PandoraXParser.WHEN)
-            self.state = 53
+            self.state = 60
             self.expression(0)
-            self.state = 54
+            self.state = 61
             self.block()
-            self.state = 57
+            self.state = 64
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==4:
-                self.state = 55
+                self.state = 62
                 self.match(PandoraXParser.WHENEVER)
-                self.state = 56
+                self.state = 63
                 self.block()
 
 
@@ -617,11 +643,11 @@ class PandoraXParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_loopStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 59
+            self.state = 66
             self.match(PandoraXParser.LOOPX)
-            self.state = 60
+            self.state = 67
             self.expression(0)
-            self.state = 61
+            self.state = 68
             self.block()
         except RecognitionException as re:
             localctx.exception = re
@@ -675,11 +701,11 @@ class PandoraXParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_assignment)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 63
+            self.state = 70
             self.match(PandoraXParser.ID)
-            self.state = 64
+            self.state = 71
             self.match(PandoraXParser.EQ)
-            self.state = 65
+            self.state = 72
             self.expression(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -737,19 +763,19 @@ class PandoraXParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 67
+            self.state = 74
             self.match(PandoraXParser.LBRACE)
-            self.state = 71
+            self.state = 78
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 8296) != 0):
-                self.state = 68
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 8302) != 0):
+                self.state = 75
                 self.statement()
-                self.state = 73
+                self.state = 80
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 74
+            self.state = 81
             self.match(PandoraXParser.RBRACE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1107,7 +1133,7 @@ class PandoraXParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 86
+            self.state = 93
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [10]:
@@ -1115,160 +1141,160 @@ class PandoraXParser ( Parser ):
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 77
+                self.state = 84
                 self.match(PandoraXParser.NOT)
-                self.state = 78
+                self.state = 85
                 self.expression(5)
                 pass
             elif token in [28]:
                 localctx = PandoraXParser.ParenExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 79
+                self.state = 86
                 self.match(PandoraXParser.LPAREN)
-                self.state = 80
+                self.state = 87
                 self.expression(0)
-                self.state = 81
+                self.state = 88
                 self.match(PandoraXParser.RPAREN)
                 pass
             elif token in [14]:
                 localctx = PandoraXParser.IntExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 83
+                self.state = 90
                 self.match(PandoraXParser.INT)
                 pass
             elif token in [15]:
                 localctx = PandoraXParser.BoolExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 84
+                self.state = 91
                 self.match(PandoraXParser.BOOL)
                 pass
             elif token in [13]:
                 localctx = PandoraXParser.IdExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 85
+                self.state = 92
                 self.match(PandoraXParser.ID)
                 pass
             else:
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 108
+            self.state = 115
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 106
+                    self.state = 113
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
                     if la_ == 1:
                         localctx = PandoraXParser.MulDivExprContext(self, PandoraXParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 88
+                        self.state = 95
                         if not self.precpred(self._ctx, 11):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 11)")
-                        self.state = 89
+                        self.state = 96
                         _la = self._input.LA(1)
                         if not(_la==19 or _la==20):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 90
+                        self.state = 97
                         self.expression(12)
                         pass
 
                     elif la_ == 2:
                         localctx = PandoraXParser.AddSubExprContext(self, PandoraXParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 91
+                        self.state = 98
                         if not self.precpred(self._ctx, 10):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 10)")
-                        self.state = 92
+                        self.state = 99
                         _la = self._input.LA(1)
                         if not(_la==17 or _la==18):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 93
+                        self.state = 100
                         self.expression(11)
                         pass
 
                     elif la_ == 3:
                         localctx = PandoraXParser.ComparisonExprContext(self, PandoraXParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 94
+                        self.state = 101
                         if not self.precpred(self._ctx, 9):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 9)")
-                        self.state = 95
+                        self.state = 102
                         _la = self._input.LA(1)
                         if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 62914560) != 0)):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 96
+                        self.state = 103
                         self.expression(10)
                         pass
 
                     elif la_ == 4:
                         localctx = PandoraXParser.EqualityExprContext(self, PandoraXParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 97
+                        self.state = 104
                         if not self.precpred(self._ctx, 8):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 8)")
-                        self.state = 98
+                        self.state = 105
                         _la = self._input.LA(1)
                         if not(_la==26 or _la==27):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 99
+                        self.state = 106
                         self.expression(9)
                         pass
 
                     elif la_ == 5:
                         localctx = PandoraXParser.AndExprContext(self, PandoraXParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 100
+                        self.state = 107
                         if not self.precpred(self._ctx, 7):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 7)")
-                        self.state = 101
+                        self.state = 108
                         self.match(PandoraXParser.AND)
-                        self.state = 102
+                        self.state = 109
                         self.expression(8)
                         pass
 
                     elif la_ == 6:
                         localctx = PandoraXParser.OrExprContext(self, PandoraXParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 103
+                        self.state = 110
                         if not self.precpred(self._ctx, 6):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
-                        self.state = 104
+                        self.state = 111
                         self.match(PandoraXParser.OR)
-                        self.state = 105
+                        self.state = 112
                         self.expression(7)
                         pass
 
              
-                self.state = 110
+                self.state = 117
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re

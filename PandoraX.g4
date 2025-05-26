@@ -3,18 +3,19 @@ grammar PandoraX;
 program: statement* EOF;
 
 statement
-    : inputStatement
+    : declaration
     | outputStatement
     | conditionalStatement
     | loopStatement
     | assignment
     ;
 
-typeCast: INTER | STRIN;
-
-inputStatement
-    : ID EQ typeCast LPAREN SUMMON LPAREN INTERPOLATED_STRING RPAREN RPAREN
+declaration
+    : typeCast ID EQ expression
+    | ID EQ typeCast LPAREN SUMMON LPAREN INTERPOLATED_STRING RPAREN RPAREN
     ;
+
+typeCast: INTER | STRIN;
 
 outputStatement
     : PANDORAEXPOSE LPAREN INTERPOLATED_STRING RPAREN

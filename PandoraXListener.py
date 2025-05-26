@@ -26,21 +26,21 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PandoraXParser#declaration.
+    def enterDeclaration(self, ctx:PandoraXParser.DeclarationContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#declaration.
+    def exitDeclaration(self, ctx:PandoraXParser.DeclarationContext):
+        pass
+
+
     # Enter a parse tree produced by PandoraXParser#typeCast.
     def enterTypeCast(self, ctx:PandoraXParser.TypeCastContext):
         pass
 
     # Exit a parse tree produced by PandoraXParser#typeCast.
     def exitTypeCast(self, ctx:PandoraXParser.TypeCastContext):
-        pass
-
-
-    # Enter a parse tree produced by PandoraXParser#inputStatement.
-    def enterInputStatement(self, ctx:PandoraXParser.InputStatementContext):
-        pass
-
-    # Exit a parse tree produced by PandoraXParser#inputStatement.
-    def exitInputStatement(self, ctx:PandoraXParser.InputStatementContext):
         pass
 
 
