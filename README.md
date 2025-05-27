@@ -8,18 +8,32 @@
 
 O objetivo principal deste projeto é criar um compilador que leia o código-fonte escrito na linguagem Pandora e o traduza para uma linguagem de mais baixo nível, como *Python, ou até mesmo o execute diretamente. O compilador é uma ferramenta educacional para compreender o funcionamento de compiladores e interpretar os conceitos de **análise léxica, **análise sintática* e *execução de código*.
 
-## ✨ Funcionalidades
+## ✨ Funcionalidades da Linguagem
+- 🔸 Tipos Primitivos
+- ✅ inter (inteiro)
+- ✅ strin (string)
+- ✅ bool (booleano)
 
-- ✅ Dois tipos primitivos: `inter` (inteiro), `strin` (string)
-- 📥 Entrada com `summon.x`
-- 📤 Saída com `pandora.expose`
-- 🔁 Estrutura de repetição com `loopX`
-- 🔀 Condicional com `when`...`whenever`
-- ➕ Expressões com `+`, `-`, `*`, `/`, `==`, `!=`, `>`, `<`, `>=`, `<=`, `and`, `or`, `not`
-- 📊 Geração de AST (árvore sintática abstrata) visualizável com Graphviz
-- ❗ Tratamento de erros léxicos e sintáticos com mensagens informativas
-- ✅  *Analisador léxico (Lexer):* Converte o código-fonte em tokens.
+- 🔸 Entrada e Saída
+- 📥 Entrada com o comando summon.x
+- 📤 Saída com o comando compandora.expose
 
+- 🔸 Controle de Fluxo
+- 🔁 Estrutura de repetição com loopX
+- 🔀 Condicional com when e whenever
+
+- 🔸 Expressões Suportadas
+- ➕ Aritméticas: +, -, *, /
+- ⚖️ Comparações: ==, !=, >, <, >=, <=
+- 🔀 Lógicas: and, or, not
+
+- 🔸 Compilador
+- 🧾 Analisador Léxico: Geração de tokens a partir do código-fonte
+- 🌲 Analisador Sintático: Geração da AST com base na gramática definida
+- 🧠 Analisador Semântico: Verificação de tipos, declarações e operações
+- 📊 Visualização da AST com Graphviz
+- ❗ Detecção de erros léxicos, sintáticos e semânticos com mensagens explicativas
+  
 ---
 
 ## Tecnologias Usadas
