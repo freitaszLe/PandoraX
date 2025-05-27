@@ -1,10 +1,12 @@
 
 # 🧙‍♂️ PandoraX: A Linguagem de Programação do Desconhecido
 
-**PandoraX** é uma linguagem de programação personalizada criada como parte do projeto final da disciplina de **Construção de Compiladores (2025/1)**. Com uma gramática própria, PandoraX possui suporte a tipos primitivos, controle de fluxo, entrada/saída, expressões aritméticas e lógicas, além de geração de AST e tratamento de erros.
+**PandoraX** é uma linguagem de programação personalizada, desenvolvida como parte do projeto final da disciplina de Construção de Compiladores (2025/1). Inspirada em uma temática mágica, PandoraX oferece uma experiência de escrita de código parecida com Python, com uma gramática própria e recursos de controle de fluxo, tipos primitivos e análise semântica.
+
+Este projeto envolve o desenvolvimento de um compilador completo para a linguagem, incluindo as etapas de análise léxica, análise sintática, análise semântica, geração de AST e execução interpretada.
 
 
-## ❗Objetivo do Projeto
+## 🎯 Objetivo do Projeto
 
 O principal objetivo deste projeto é compreender e aplicar os conceitos fundamentais da construção de compiladores. Para isso, foi criada a linguagem PandoraX, permitindo:
 - Definir uma gramática personalizada.
