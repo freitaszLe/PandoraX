@@ -6,7 +6,12 @@
 
 ## ❗Objetivo do Projeto
 
-O objetivo principal deste projeto é criar um compilador que leia o código-fonte escrito na linguagem Pandora e o traduza para uma linguagem de mais baixo nível, como *Python, ou até mesmo o execute diretamente. O compilador é uma ferramenta educacional para compreender o funcionamento de compiladores e interpretar os conceitos de **análise léxica, **análise sintática* e *execução de código*.
+O principal objetivo deste projeto é compreender e aplicar os conceitos fundamentais da construção de compiladores. Para isso, foi criada a linguagem PandoraX, permitindo:
+- Definir uma gramática personalizada.
+- Implementar analisadores léxico, sintático e semântico.
+- Gerar e interpretar uma árvore sintática abstrata (AST).
+- Fornecer mensagens de erro claras durante as análises.
+- A execução do código pode ser feita de forma interpretada (diretamente pela árvore gerada) ou convertida em uma linguagem de mais baixo nível, como Python.
 
 ## ✨ Funcionalidades da Linguagem
 - 🔸 Tipos Primitivos
