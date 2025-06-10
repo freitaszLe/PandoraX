@@ -1,24 +1,16 @@
-    num1 = inter(summon.x(<Digite o primeiro numero inteiro: >))
-    num2 = inter(summon.x(<Digite o segundo número inteiro: >))
-    texto = strin(summon.x(<Digite uma palavra: >))
+// soma.pandoraX (Versão corrigida)
 
+// Inicialize as variáveis com um valor padrão para a declaração ser válida.
+inter num1 = 0
+inter num2 = 0
+inter resultado = 0
 
-    pandora.expose(<primeiro numero: {num1}, segundo numero: {num2} e a palavra: '{texto}'>)
+pandora.expose(<Calculadora de Soma Simples>)
 
+// Agora, use atribuições normais para obter os valores do usuário.
+num1 = inter(summon.x(<Digite o primeiro número:>))
+num2 = inter(summon.x(<Digite o segundo número:>))
 
-    when num1 > num2{
-        pandora.expose(<o primeiro numero é maior que o segundo>)
-    }
-    whenever{
-        pandora.expose(<O primeiro numero não é maior que o segundo>)
-    }
+resultado = num1 + num2
 
-    resultado = (num1 + num2)
-    pandora.expose(<o resultado da soma dos dois numeros: {resultado}>)
-
-
-    contador = 0
-    loopX contador < 5{
-        pandora.expose(<contador: {contador}>)
-        contador = contador + 1
-    }
+pandora.expose(<O resultado da soma é: {resultado}>)
