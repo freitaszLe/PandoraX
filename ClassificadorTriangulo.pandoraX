@@ -1,27 +1,26 @@
-// Classificação de Triângulos com valores fixos em PandoraX
+// Versão mais limpa para ClassificadorTriangulo.pandoraX
 
 inter a = 3
 inter b = 4
 inter c = 5
 
-when a <= 0 or b <= 0 or c <= 0 {
-    pandora.expose(<Erro: medidas devem ser maiores que zero.>)
-}
-whenever {
-    when (a + b > c) and (a + c > b) and (b + c > a) {
-        when a == b and b == c {
-            pandora.expose(<Triângulo equilátero válido>)
-        }
-        whenever {
-            when a == b or a == c or b == c {
-                pandora.expose(<Triângulo isósceles válido>)
-            }
-            whenever {
-                pandora.expose(<Triângulo escaleno válido>)
-            }
-        }
+// 1. Verifica a condição de existência
+when (a + b > c) and (a + c > b) and (b + c > a) {
+
+    // 2. Se existe, classifica o tipo
+    when a == b and b == c {
+        pandora.expose(<Triângulo equilátero válido>)
     }
     whenever {
-        pandora.expose(<Medidas inválidas>)
+        when a == b or a == c or b == c {
+            pandora.expose(<Triângulo isósceles válido>)
+        }
+        whenever {
+            pandora.expose(<Triângulo escaleno válido>)
+        }
     }
+}
+// 3. Se não existe, expõe o erro
+whenever {
+    pandora.expose(<Medidas inválidas para um triângulo.>)
 }
