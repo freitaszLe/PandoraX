@@ -21,29 +21,50 @@ class PandoraXSemanticAnalyzer(PandoraXVisitor):
         return self.errors, self.log
 
     # Visita uma declaração (com ou sem 'summon')
-    def visitDeclaration(self, ctx):
-        var_name = ctx.ID().getText()
-        
-        # Verifica se a variável já foi declarada
-        if var_name in self.symbol_table:
-            self.errors.append(f"Erro na linha {ctx.start.line}: Variável '{var_name}' já foi declarada.")
-            return
+    # Em semantic_analyzer.py, SUBSTITUA o método visitDeclaration por este:
 
-        # Declaração com atribuição normal
+    # Em executor.py, SUBSTITUA o método visitDeclaration por este:
+
+    def visitDeclaration(self, ctx):
+        # --- LÓGICA ATUALIZADA PARA AS DUAS FORMAS DE DECLARAÇÃO ---
+
+        # Forma 1: Declaração com atribuição direta (ex: inter a = 3)
         if ctx.expression():
-            var_type = ctx.typeCast().getText().lower()
-            expr_type = self.visit(ctx.expression())
-            
-            if expr_type != "erro" and expr_type != var_type:
-                self.errors.append(f"Erro na linha {ctx.start.line}: Atribuição incompatível. Tentando atribuir '{expr_type}' para a variável '{var_name}' do tipo '{var_type}'.")
-            
-            self.symbol_table[var_name] = var_type
-            self.log.append(f"Variável '{var_name}' declarada como '{var_type}'.")
-        # Declaração com 'summon' (input do usuário)
+            var_name = ctx.ID().getText()
+            value = self.visit(ctx.expression())
+            self.variables[var_name] = value
+
+        # Forma 2: Declaração com input do usuário (ex: a = inter(summon.x(...)))
         else:
-            var_type = ctx.typeCast(0).getText().lower()
-            self.symbol_table[var_name] = var_type
-            self.log.append(f"Variável '{var_name}' declarada como '{var_type}' via summon.")
+            var_name = ctx.ID().getText()
+            target_type = ctx.typeCast().getText().lower()
+            
+            # Pega a mensagem do prompt e remove as aspas <>
+            prompt_message = ctx.INTERPOLATED_STRING().getText()[1:-1]
+            
+            # Mostra a mensagem e espera o input do usuário
+            user_input = input(prompt_message + " ") # Adiciona um espaço para ficar mais bonito
+            
+            # Tenta converter o input para o tipo esperado
+            try:
+                final_value = None
+                if target_type == 'inter':
+                    final_value = int(user_input)
+                elif target_type == 'strin':
+                    final_value = str(user_input) # Se um dia você usar string
+                # Adicione aqui outros tipos se precisar (ex: float, bool)
+                else:
+                    final_value = user_input # Se o tipo não for reconhecido, salva como string
+
+                # Armazena o valor convertido na memória do executor
+                self.variables[var_name] = final_value
+
+            except ValueError:
+                # Se o usuário digitar um texto onde se esperava um número
+                print(f"\nERRO DE EXECUÇÃO: Valor '{user_input}' é inválido para o tipo '{target_type}'.")
+                # Em um compilador real, você poderia decidir parar a execução aqui
+                # Por enquanto, vamos atribuir um valor padrão (0 ou None)
+                self.variables[var_name] = 0
 
 
     def visitAssignment(self, ctx):
