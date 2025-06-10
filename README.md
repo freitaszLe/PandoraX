@@ -65,11 +65,14 @@ strin    // tipo string
    git clone https://github.com/seu-usuario/pandora-compilador.git
 2. *Executar (+ gera dot):*
    ```bash
-   python pandoraX_executor.py NomeDoArquivo.pandoraX
+   java -jar antlr4-4.13.2-complete.jar -Dlanguage=Python3 -visitor PandoraX.g4
+   python PandoraX_compilador.py NomeArquivo.pandoraX
 
 2. *Gerar árvore:*
    ```bash
    dot -Tpng NomeDoArquivo_ast.dot -o ast.png && start ast.png
+   ou
+   "C:\Program Files\Graphviz\bin\dot.exe" -Tpng ClassificadorTriangulo_ast.dot -o arvore_sintatica.png
 
 
 
