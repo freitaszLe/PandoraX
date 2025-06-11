@@ -4,7 +4,7 @@ from PandoraXVisitor import PandoraXVisitor
 from PandoraXParser import PandoraXParser
 
 # =====================================================================
-# 🚀 CLASSE DE EXECUÇÃO (INTERPRETADOR) - VERSÃO CORRIGIDA E COMPLETA 🚀
+# 🚀 CLASSE DE EXECUÇÃO (INTERPRETADOR)  🚀
 # =====================================================================
 
 class PandoraX_executor(PandoraXVisitor):
