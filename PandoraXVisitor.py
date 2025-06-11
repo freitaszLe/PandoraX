@@ -54,6 +54,11 @@ class PandoraXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PandoraXParser#SummonExpr.
+    def visitSummonExpr(self, ctx:PandoraXParser.SummonExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PandoraXParser#AndExpr.
     def visitAndExpr(self, ctx:PandoraXParser.AndExprContext):
         return self.visitChildren(ctx)

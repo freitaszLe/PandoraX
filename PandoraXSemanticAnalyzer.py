@@ -43,6 +43,13 @@ class PandoraXSemanticAnalyzer(PandoraXVisitor):
         self.symbol_table[var_name] = var_type
         self.log.append(f"Variável '{var_name}' declarada como '{var_type}'.")
 
+    # Em semantic_analyzer.py, adicione este novo método:
+
+    def visitSummonExpr(self, ctx:PandoraXParser.SummonExprContext):
+        # A expressão retorna o tipo especificado no typeCast.
+        # Ex: inter(summon.x(...)) retorna o tipo "inter".
+        return ctx.typeCast().getText().lower()
+
     def visitAssignment(self, ctx:PandoraXParser.AssignmentContext):
         var_name = ctx.ID().getText()
 

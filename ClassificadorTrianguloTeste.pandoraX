@@ -1,8 +1,8 @@
 // Classificação de Triângulos com input do usuário
 
-a = inter(summon.x(<Digite o lado A: >))
-b = inter(summon.x(<Digite o lado B: >))
-c = inter(summon.x(<Digite o lado C: >))
+inter a = inter(summon.x(<Digite o lado A: >))
+inter b = inter(summon.x(<Digite o lado B: >))
+inter c = inter(summon.x(<Digite o lado C: >))
 
 when a <= 0 or b <= 0 or c <= 0 {
     pandora.expose(<Erro: medidas devem ser maiores que zero.>)

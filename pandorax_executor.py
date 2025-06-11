@@ -50,6 +50,26 @@ class PandoraX_executor(PandoraXVisitor):
 
     # --- Métodos para EXPRESSÕES (A PARTE QUE FALTAVA!) ---
 
+
+    def visitSummonExpr(self, ctx:PandoraXParser.SummonExprContext):
+        target_type = ctx.typeCast().getText().lower()
+        prompt_message = ctx.INTERPOLATED_STRING().getText()[1:-1]
+        
+        user_input = input(prompt_message + " ")
+        
+        try:
+            if target_type == 'inter':
+                return int(user_input)
+            elif target_type == 'strin':
+                return str(user_input)
+            # Adicione outros tipos aqui se necessário
+            return user_input
+        except ValueError:
+            print(f"\nERRO DE EXECUÇÃO: Valor '{user_input}' é inválido para o tipo '{target_type}'.")
+            if target_type == 'inter':
+                return 0  # Retorna um valor padrão em caso de erro
+            return None
+        
     def visitAddSubExpr(self, ctx:PandoraXParser.AddSubExprContext):
         left = self.visit(ctx.expression(0))
         right = self.visit(ctx.expression(1))

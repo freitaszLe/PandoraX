@@ -89,6 +89,15 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PandoraXParser#SummonExpr.
+    def enterSummonExpr(self, ctx:PandoraXParser.SummonExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#SummonExpr.
+    def exitSummonExpr(self, ctx:PandoraXParser.SummonExprContext):
+        pass
+
+
     # Enter a parse tree produced by PandoraXParser#AndExpr.
     def enterAndExpr(self, ctx:PandoraXParser.AndExprContext):
         pass
