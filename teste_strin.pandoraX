@@ -1,0 +1,35 @@
+// teste_strin.pandoraX
+// Teste completo para o tipo 'strin'
+
+// 1. Declaração e inicialização de uma string literal
+pandora.expose(<--- 1. Teste de Declaração Literal --->)
+strin mensagem_fixa = <Bem-vindo ao teste de strings!>
+
+// Para imprimir uma variável, ela deve estar DENTRO de uma string interpolada
+pandora.expose(<A mensagem é: {mensagem_fixa}>)
+
+
+// 2. Declaração com input do usuário (summon.x)
+pandora.expose(<--- 2. Teste de Input Interativo --->)
+strin nome_usuario = strin(summon.x(<Por favor, digite seu nome:>))
+pandora.expose(<Olá, {nome_usuario}! Que bom ter você aqui.>)
+
+
+// 3. Reatribuição de valor a uma variável existente
+pandora.expose(<--- 3. Teste de Reatribuição --->)
+mensagem_fixa = <Este é um novo valor para a mensagem.>
+pandora.expose(<{mensagem_fixa}>)
+
+
+// 4. Comparação de strings
+pandora.expose(<--- 4. Teste de Comparação (==) --->)
+strin senha_secreta = <pandora>
+
+when nome_usuario == senha_secreta {
+    pandora.expose(<Parabéns! Você digitou a palavra secreta 'pandora'!>)
+}
+whenever {
+    pandora.expose(<Você não digitou a palavra secreta.>)
+}
+
+pandora.expose(<Fim do teste.>)

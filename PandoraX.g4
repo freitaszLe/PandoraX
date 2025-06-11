@@ -12,7 +12,7 @@ statement
 
 declaration
     : typeCast ID EQ expression
-    | ID EQ typeCast LPAREN SUMMON LPAREN INTERPOLATED_STRING RPAREN RPAREN
+    | typeCast ID 
     ;
 
 typeCast: INTER | STRIN;
@@ -47,6 +47,8 @@ expression
     | INT                                          # IntExpr
     | BOOL                                         # BoolExpr
     | ID                                           # IdExpr
+    |  INTERPOLATED_STRING                     # StrinExpr
+    | typeCast LPAREN SUMMON LPAREN INTERPOLATED_STRING RPAREN RPAREN # SummonExpr
     ;
 
 // Tokens
