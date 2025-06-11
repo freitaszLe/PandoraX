@@ -116,24 +116,6 @@ class PandoraXListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PandoraXParser#MulDivExpr.
-    def enterMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
-        pass
-
-    # Exit a parse tree produced by PandoraXParser#MulDivExpr.
-    def exitMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
-        pass
-
-
-    # Enter a parse tree produced by PandoraXParser#EqualityExpr.
-    def enterEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
-        pass
-
-    # Exit a parse tree produced by PandoraXParser#EqualityExpr.
-    def exitEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
-        pass
-
-
     # Enter a parse tree produced by PandoraXParser#IdExpr.
     def enterIdExpr(self, ctx:PandoraXParser.IdExprContext):
         pass
@@ -149,6 +131,42 @@ class PandoraXListener(ParseTreeListener):
 
     # Exit a parse tree produced by PandoraXParser#ComparisonExpr.
     def exitComparisonExpr(self, ctx:PandoraXParser.ComparisonExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#OrExpr.
+    def enterOrExpr(self, ctx:PandoraXParser.OrExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#OrExpr.
+    def exitOrExpr(self, ctx:PandoraXParser.OrExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#StrinExpr.
+    def enterStrinExpr(self, ctx:PandoraXParser.StrinExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#StrinExpr.
+    def exitStrinExpr(self, ctx:PandoraXParser.StrinExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#MulDivExpr.
+    def enterMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#MulDivExpr.
+    def exitMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
+        pass
+
+
+    # Enter a parse tree produced by PandoraXParser#EqualityExpr.
+    def enterEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
+        pass
+
+    # Exit a parse tree produced by PandoraXParser#EqualityExpr.
+    def exitEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
         pass
 
 
@@ -185,15 +203,6 @@ class PandoraXListener(ParseTreeListener):
 
     # Exit a parse tree produced by PandoraXParser#AddSubExpr.
     def exitAddSubExpr(self, ctx:PandoraXParser.AddSubExprContext):
-        pass
-
-
-    # Enter a parse tree produced by PandoraXParser#OrExpr.
-    def enterOrExpr(self, ctx:PandoraXParser.OrExprContext):
-        pass
-
-    # Exit a parse tree produced by PandoraXParser#OrExpr.
-    def exitOrExpr(self, ctx:PandoraXParser.OrExprContext):
         pass
 
 

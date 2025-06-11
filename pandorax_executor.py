@@ -2,7 +2,7 @@
 
 from PandoraXVisitor import PandoraXVisitor
 from PandoraXParser import PandoraXParser
-
+import re
 # =====================================================================
 # 🚀 CLASSE DE EXECUÇÃO (INTERPRETADOR)  🚀
 # =====================================================================
@@ -23,17 +23,38 @@ class PandoraX_executor(PandoraXVisitor):
         var_name = ctx.ID().getText()
         value = self.visit(ctx.expression())
         self.variables[var_name] = value
+        # Em executor.py, adicione este novo método
 
+    def visitStrinExpr(self, ctx:PandoraXParser.StrinExprContext):
+        # Pega o texto completo, incluindo os <>
+        text_com_aspas = ctx.getText()
+        # Retorna o texto removendo o primeiro caractere ('<') e o último ('>')
+        return text_com_aspas[1:-1]
+    
     def visitAssignment(self, ctx:PandoraXParser.AssignmentContext):
         var_name = ctx.ID().getText()
         value = self.visit(ctx.expression())
         self.variables[var_name] = value
 
     def visitOutputStatement(self, ctx:PandoraXParser.OutputStatementContext):
+        # 1. Pega o texto da string, sem os <>
         text = ctx.INTERPOLATED_STRING().getText()[1:-1]
-        # Lógica para substituir variáveis na string, se houver
-        # (Esta parte pode ser expandida depois)
-        print(text)
+        
+        # 2. Define uma função auxiliar que sabe como substituir uma variável
+        def replacer(match):
+            # Pega o nome da variável que foi encontrado dentro das chaves {}
+            var_name = match.group(1)
+            # Busca o valor da variável na memória do executor
+            value = self.variables.get(var_name, "nulo") # Usa "nulo" se não encontrar
+            # Retorna o valor como string
+            return str(value)
+
+        # 3. Usa o módulo 're' para encontrar todas as ocorrências de {variavel}
+        # e chamar a função 'replacer' para cada uma, fazendo a substituição.
+        final_text = re.sub(r'\{([a-zA-Z_][a-zA-Z_0-9]*)\}', replacer, text)
+        
+        # 4. Imprime o texto final com os valores já substituídos
+        print(final_text)
 
     def visitConditionalStatement(self, ctx:PandoraXParser.ConditionalStatementContext):
         condition = self.visit(ctx.expression())

@@ -69,16 +69,6 @@ class PandoraXVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PandoraXParser#MulDivExpr.
-    def visitMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PandoraXParser#EqualityExpr.
-    def visitEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by PandoraXParser#IdExpr.
     def visitIdExpr(self, ctx:PandoraXParser.IdExprContext):
         return self.visitChildren(ctx)
@@ -86,6 +76,26 @@ class PandoraXVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by PandoraXParser#ComparisonExpr.
     def visitComparisonExpr(self, ctx:PandoraXParser.ComparisonExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#OrExpr.
+    def visitOrExpr(self, ctx:PandoraXParser.OrExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#StrinExpr.
+    def visitStrinExpr(self, ctx:PandoraXParser.StrinExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#MulDivExpr.
+    def visitMulDivExpr(self, ctx:PandoraXParser.MulDivExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PandoraXParser#EqualityExpr.
+    def visitEqualityExpr(self, ctx:PandoraXParser.EqualityExprContext):
         return self.visitChildren(ctx)
 
 
@@ -106,11 +116,6 @@ class PandoraXVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by PandoraXParser#AddSubExpr.
     def visitAddSubExpr(self, ctx:PandoraXParser.AddSubExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PandoraXParser#OrExpr.
-    def visitOrExpr(self, ctx:PandoraXParser.OrExprContext):
         return self.visitChildren(ctx)
 
 

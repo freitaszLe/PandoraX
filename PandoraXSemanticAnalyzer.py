@@ -49,6 +49,11 @@ class PandoraXSemanticAnalyzer(PandoraXVisitor):
         # A expressão retorna o tipo especificado no typeCast.
         # Ex: inter(summon.x(...)) retorna o tipo "inter".
         return ctx.typeCast().getText().lower()
+    # Em semantic_analyzer.py, adicione este novo método
+
+    def visitStrinExpr(self, ctx:PandoraXParser.StrinExprContext):
+        # Quando o analisador encontra uma string literal, o tipo dela é sempre 'strin'.
+        return "strin"
 
     def visitAssignment(self, ctx:PandoraXParser.AssignmentContext):
         var_name = ctx.ID().getText()
