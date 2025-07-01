@@ -40,6 +40,20 @@ class TACGenerator(PandoraXVisitor):
         # 5. Retorna o operando temporário para a expressão pai usar
         return result_temp
 
+    def visitParenExpr(self, ctx):
+    # Apenas visita a expressão interna e retorna o resultado dela.
+        return self.visit(ctx.expression())
+
+    def visitEqualityExpr(self, ctx):
+        op1 = self.visit(ctx.expression(0))
+        op2 = self.visit(ctx.expression(1))
+        result_temp = self.new_temp()
+        opcode = ctx.getChild(1).getText() # Pega o '==' ou '!='
+        
+        instruction = TACInstruction(opcode, result_temp, op1, op2)
+        self.tac_code.append(instruction)
+        return result_temp
+
     def visitIntExpr(self, ctx):
         # Literais não precisam de instrução, apenas retornamos um operando
         return TACOperand(ctx.getText())
@@ -74,3 +88,64 @@ class TACGenerator(PandoraXVisitor):
             
         # 6. Marca o fim de toda a estrutura condicional
         self.tac_code.append(TACInstruction('LABEL', end_label))
+    
+    def visitComparisonExpr(self, ctx):
+        op1 = self.visit(ctx.expression(0))
+        op2 = self.visit(ctx.expression(1))
+        result_temp = self.new_temp()
+        opcode = ctx.getChild(1).getText() # Pega '>', '<', '==' etc.
+        
+        # Instruções de comparação também geram um resultado em um temporário
+        instruction = TACInstruction(opcode, result_temp, op1, op2)
+        self.tac_code.append(instruction)
+        return result_temp
+
+    def visitAndExpr(self, ctx):
+        op1 = self.visit(ctx.expression(0))
+        op2 = self.visit(ctx.expression(1))
+        result_temp = self.new_temp()
+        
+        instruction = TACInstruction('and', result_temp, op1, op2)
+        self.tac_code.append(instruction)
+        return result_temp
+
+    # FAÇA O MESMO PARA 'visitOrExpr'
+    def visitOrExpr(self, ctx):
+        op1 = self.visit(ctx.expression(0))
+        op2 = self.visit(ctx.expression(1))
+        result_temp = self.new_temp()
+        
+        instruction = TACInstruction('or', result_temp, op1, op2)
+        self.tac_code.append(instruction)
+        return result_temp
+    
+    def visitBlock(self, ctx):
+    # Simplesmente visita cada statement dentro do bloco
+        for stmt in ctx.statement():
+            self.visit(stmt)
+
+    def visitOutputStatement(self, ctx):
+    # Para simplificar, vamos tratar a string inteira como um operando.
+    # A interpolação será responsabilidade da Etapa 4.
+        string_literal = TACOperand(ctx.INTERPOLATED_STRING().getText())
+    
+    # Gera uma instrução PRINT
+        instruction = TACInstruction('PRINT', arg1=string_literal)
+        self.tac_code.append(instruction)
+    
+    # No arquivo tac_generator.py, dentro da classe TACGenerator
+
+    def visitDeclaration(self, ctx):
+        # Pega o nome da variável como um operando de destino
+        var_name_operand = TACOperand(ctx.ID().getText())
+        
+        # Se a declaração tiver uma expressão (ex: inter a = 5)
+        if ctx.expression():
+            # Visita a expressão para obter o valor/operando dela
+            expr_operand = self.visit(ctx.expression())
+            
+            # Cria uma instrução de cópia: a = 5
+            instruction = TACInstruction('COPY', var_name_operand, expr_operand)
+            self.tac_code.append(instruction)
+
+        # Se for só 'inter a;', não gera instrução, a alocação será na Etapa 4.
