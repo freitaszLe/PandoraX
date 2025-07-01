@@ -79,6 +79,9 @@ strin    // tipo string
 2. *Gerar TAC:*
    ```bash
    python PandoraX_compilador.py NomeArquivo.pandoraX --tac
-
+   
+2. *Gerar LLVM:*
+   ```bash
+   python PandoraX_compilador.py NomeArquivo.pandoraX --ll
 
 
