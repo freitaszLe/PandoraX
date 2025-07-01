@@ -109,7 +109,7 @@ def main():
         # Se nenhuma flag de compilação for usada, executa com o interpretador.
         else:
             print("\n--- Executando o Código PandoraX (Modo Interpretador) ---")
-            executor = PandoraXExecutor()
+            executor = PandoraX_executor()
             executor.visit(tree)
             print("----------------------------------")
             print("🚀 Execução finalizada.")
