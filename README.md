@@ -63,11 +63,10 @@ strin    // tipo string
 1. *Clonar o repositório:*
    ```bash
    git clone https://github.com/seu-usuario/pandora-compilador.git
-2. *Executar (+ gera dot):*
+2. *Preparar o ambiente:*
    ```bash
    java -jar antlr4-4.13.2-complete.jar -Dlanguage=Python3 -visitor PandoraX.g4
    pip install llvmlite
-   python PandoraX_compilador.py NomeArquivo.pandoraX
    winget install LLVM.LLVM
    
 2. *Gerar árvore:*
@@ -75,13 +74,19 @@ strin    // tipo string
    dot -Tpng NomeDoArquivo_ast.dot -o ast.png && start ast.png
    ou
    "C:\Program Files\Graphviz\bin\dot.exe" -Tpng ClassificadorTriangulo_ast.dot -o arvore_sintatica.png
+   
+2. *Executar:*
+   ```bash
+   python PandoraX_compilador.py NomeArquivo.pandoraX
 
 2. *Gerar TAC:*
    ```bash
    python PandoraX_compilador.py NomeArquivo.pandoraX --tac
    
-2. *Gerar LLVM:*
+2. *Gerar LLVM e executar:*
    ```bash
    python PandoraX_compilador.py NomeArquivo.pandoraX --ll
+   clang NomeArquivo.ll -o seu_executavel.exe
+   .\seu_executavel.exe
 
 
