@@ -74,6 +74,9 @@ strin    // tipo string
    ou
    "C:\Program Files\Graphviz\bin\dot.exe" -Tpng ClassificadorTriangulo_ast.dot -o arvore_sintatica.png
 
+2. *Gerar TAC:*
+   ```bash
+   python PandoraX_compilador.py NomeArquivo.pandoraX --tac
 
 
 
