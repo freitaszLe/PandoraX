@@ -104,9 +104,9 @@ L2:
   %".104" = trunc i32 %".103" to i1
   br i1 %".104", label %"if_true.2", label %"L4"
 L4:
-  %".111" = alloca [27 x i8]
-  store [27 x i8] c"Tri\c3\a2ngulo escaleno v\c3\a1lido\0a\00", [27 x i8]* %".111"
-  %".113" = bitcast [27 x i8]* %".111" to i8*
+  %".111" = alloca [29 x i8]
+  store [29 x i8] c"Tri\c3\a2ngulo escaleno v\c3\a1lido\0a\00", [29 x i8]* %".111"
+  %".113" = bitcast [29 x i8]* %".111" to i8*
   %".114" = call i32 (i8*, ...) @"printf"(i8* %".113")
   br label %"L5"
 L5:
@@ -114,9 +114,9 @@ L5:
 L3:
   br label %"L1"
 L0:
-  %".118" = alloca [38 x i8]
-  store [38 x i8] c"Medidas inv\c3\a1lidas para um tri\c3\a2ngulo.\0a\00", [38 x i8]* %".118"
-  %".120" = bitcast [38 x i8]* %".118" to i8*
+  %".118" = alloca [40 x i8]
+  store [40 x i8] c"Medidas inv\c3\a1lidas para um tri\c3\a2ngulo.\0a\00", [40 x i8]* %".118"
+  %".120" = bitcast [40 x i8]* %".118" to i8*
   %".121" = call i32 (i8*, ...) @"printf"(i8* %".120")
   br label %"L1"
 L1:
@@ -146,15 +146,15 @@ if_true:
   %".67" = trunc i32 %".66" to i1
   br i1 %".67", label %"if_true.1", label %"L2"
 if_true.1:
-  %".69" = alloca [29 x i8]
-  store [29 x i8] c"Tri\c3\a2ngulo equil\c3\a1tero v\c3\a1lido\0a\00", [29 x i8]* %".69"
-  %".71" = bitcast [29 x i8]* %".69" to i8*
+  %".69" = alloca [32 x i8]
+  store [32 x i8] c"Tri\c3\a2ngulo equil\c3\a1tero v\c3\a1lido\0a\00", [32 x i8]* %".69"
+  %".71" = bitcast [32 x i8]* %".69" to i8*
   %".72" = call i32 (i8*, ...) @"printf"(i8* %".71")
   br label %"L3"
 if_true.2:
-  %".106" = alloca [28 x i8]
-  store [28 x i8] c"Tri\c3\a2ngulo is\c3\b3sceles v\c3\a1lido\0a\00", [28 x i8]* %".106"
-  %".108" = bitcast [28 x i8]* %".106" to i8*
+  %".106" = alloca [31 x i8]
+  store [31 x i8] c"Tri\c3\a2ngulo is\c3\b3sceles v\c3\a1lido\0a\00", [31 x i8]* %".106"
+  %".108" = bitcast [31 x i8]* %".106" to i8*
   %".109" = call i32 (i8*, ...) @"printf"(i8* %".108")
   br label %"L5"
 }

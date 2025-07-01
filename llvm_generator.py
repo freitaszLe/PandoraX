@@ -94,29 +94,33 @@ class LLVMGenerator:
                 self.builder.cbranch(cond_val_i1, true_block, false_block)
                 self.builder.position_at_end(true_block)
 
-            # --- ALTERAÇÃO 2: Adicionar a lógica para o PRINT ---
             elif instr.opcode == 'PRINT':
-                # Pega o texto da string e o prepara no formato C (com \n e \0)
+                # Pega o texto e o prepara como uma string C (com \n e \0)
                 text = instr.arg1.name[1:-1]
                 text_to_print = text + "\n\0"
                 
-                # Cria uma constante LLVM para a nossa string
-                c_text = ir.Constant(ir.ArrayType(ir.IntType(8), len(text_to_print)),
-                                     bytearray(text_to_print.encode("utf8")))
+                # Codifica a string para uma sequência de bytes
+                text_bytes = bytearray(text_to_print.encode("utf8"))
                 
-                # Aloca memória e armazena a string lá. O ponteiro 'str_ptr'
-                # aqui tem o tipo [N x i8]* (ponteiro para array)
-                str_ptr = self.builder.alloca(c_text.type)
-                self.builder.store(c_text, str_ptr)
-
                 # --- A CORREÇÃO ESTÁ AQUI ---
-                # Converte o ponteiro para o tipo que printf espera (i8*)
-                # usando bitcast.
+                
+                # 1. Primeiro, criamos o tipo de dado correto (um array de bytes do tamanho exato)
+                string_type = ir.ArrayType(ir.IntType(8), len(text_bytes))
+                
+                # 2. Depois, criamos a constante com os dados e o tipo correto
+                string_const = ir.Constant(string_type, text_bytes)
+                
+                # 3. Finalmente, alocamos memória do MESMO TIPO da constante
+                str_ptr = self.builder.alloca(string_type)
+                
+                # 4. Agora os tipos são idênticos e o store funciona
+                self.builder.store(string_const, str_ptr)
+                
+                # Converte o ponteiro para o tipo genérico i8* que printf espera
                 char_ptr = self.builder.bitcast(str_ptr, ir.IntType(8).as_pointer())
                 
-                # Usa o ponteiro do tipo correto na chamada da função
+                # Chama a função printf
                 self.builder.call(self.printf, [char_ptr])
-        
         # Finaliza a função
         if not self.builder.block.is_terminated:
             self.builder.ret(ir.Constant(self.int_type, 0))
