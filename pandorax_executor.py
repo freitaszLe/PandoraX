@@ -1,11 +1,11 @@
-# Conteúdo COMPLETO para o arquivo: executor.py
+# =====================================================================
+# 🚀 CLASSE DE EXECUÇÃO (INTERPRETADOR)  🚀
+# =====================================================================
 
 from PandoraXVisitor import PandoraXVisitor
 from PandoraXParser import PandoraXParser
 import re
-# =====================================================================
-# 🚀 CLASSE DE EXECUÇÃO (INTERPRETADOR)  🚀
-# =====================================================================
+
 
 class PandoraX_executor(PandoraXVisitor):
     def __init__(self):

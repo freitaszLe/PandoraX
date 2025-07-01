@@ -1,31 +1,36 @@
-# =====================================================================
-# ⚙️ FUNÇÃO PRINCIPAL (ORQUESTRADOR) ⚙️
-# =====================================================================
-
 import sys
 import os
+import argparse # NOVO: Módulo para argumentos de linha de comando
+
 from antlr4 import FileStream, CommonTokenStream
 
-# Importa as classes geradas pelo ANTLR
+
 from PandoraXLexer import PandoraXLexer
 from PandoraXParser import PandoraXParser
-
-# Importa os nossos módulos separados
 from utils import print_tokens
 from error_listeners import PandoraXLexerErrorListener, PandoraXErrorListener
 from ast_generator import PandoraXASTGenerator
 from PandoraXSemanticAnalyzer import PandoraXSemanticAnalyzer 
 from PandoraX_executor import PandoraX_executor                 
+from tac_generator import TACGenerator
+
+# =====================================================================
+# ⚙️ FUNÇÃO PRINCIPAL (ORQUESTRADOR) ⚙️
+# =====================================================================
 
 def main():
-    if len(sys.argv) < 2:
-        print("Uso: python compiler.py <arquivo.pandoraX>")
-        sys.exit(1)
+    # --- NOVO: Lendo argumentos com argparse ---
+    parser = argparse.ArgumentParser(description="Compilador para a linguagem PandoraX.")
+    parser.add_argument('input_file', help='O arquivo .pandoraX a ser compilado.')
+    parser.add_argument('--tac', action='store_true', help='Gera o Código de Três Endereços (TAC) em vez de executar.')
+    args = parser.parse_args()
 
-    input_file = sys.argv[1]
+    input_file = args.input_file
     print(f"Compilando o arquivo: {input_file}")
 
     try:
+        # --- As fases de análise continuam exatamente as mesmas ---
+
         # Configuração inicial
         input_stream = FileStream(input_file, encoding='utf-8')
         lexer = PandoraXLexer(input_stream)
@@ -35,7 +40,7 @@ def main():
         stream = CommonTokenStream(lexer)
         stream.fill()
         
-        # 1. Análise Léxica (impressão de tokens)
+        # 1. Análise Léxica
         print_tokens(stream, lexer)
         
         # 2. Análise Sintática
@@ -45,7 +50,7 @@ def main():
         tree = parser.program()
         print("✅ Análise sintática concluída com sucesso.")
         
-        # 3. Geração da AST
+        # 3. Geração da AST (Visual)
         ast_generator = PandoraXASTGenerator()
         dot_code = ast_generator.visit(tree)
         if dot_code:
@@ -67,12 +72,27 @@ def main():
         else:
             print("✅ Análise semântica concluída com sucesso.")
 
-        # 5. Execução
-        print("\n--- Executando o Código PandoraX ---")
-        executor = PandoraX_executor()
-        executor.visit(tree)
-        print("----------------------------------")
-        print("🚀 Execução finalizada.")
+        # --- ALTERADO: Etapa 5 agora é condicional ---
+        # Verifica se o argumento --tac foi passado na linha de comando
+        if args.tac:
+            # Se sim, gera o código TAC
+            print("\n--- Gerando Código de Três Endereços (TAC) ---")
+            tac_gen = TACGenerator()
+            tac_gen.visit(tree) # O visitor preenche a lista de código tac_gen.tac_code
+            
+            # Salva o código TAC em um arquivo .tac
+            tac_file_name = os.path.splitext(input_file)[0] + ".tac"
+            with open(tac_file_name, "w", encoding='utf-8') as f:
+                for instr in tac_gen.tac_code:
+                    f.write(str(instr) + "\n")
+            print(f"📄 Arquivo TAC gerado: {tac_file_name}")
+        else:
+            # Se não, executa o código com o interpretador (comportamento antigo)
+            print("\n--- Executando o Código PandoraX ---")
+            executor = PandoraX_executor()
+            executor.visit(tree)
+            print("----------------------------------")
+            print("🚀 Execução finalizada.")
         
     except SystemExit:
         print("\nCompilação interrompida devido a erros.")
