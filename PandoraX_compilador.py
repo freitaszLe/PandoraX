@@ -15,7 +15,7 @@ from utils import print_tokens
 from error_listeners import PandoraXLexerErrorListener, PandoraXErrorListener
 from ast_generator import PandoraXASTGenerator
 from PandoraXSemanticAnalyzer import PandoraXSemanticAnalyzer 
-from PandoraX_executor import PandoraX_executor                 
+from pandorax_executor import PandoraX_executor                 
 from tac_generator import TACGenerator
 
 # --- NOVO: Importa o gerador de LLVM ---
