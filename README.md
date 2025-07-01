@@ -68,7 +68,8 @@ strin    // tipo string
    java -jar antlr4-4.13.2-complete.jar -Dlanguage=Python3 -visitor PandoraX.g4
    pip install llvmlite
    python PandoraX_compilador.py NomeArquivo.pandoraX
-
+   winget install LLVM.LLVM
+   
 2. *Gerar árvore:*
    ```bash
    dot -Tpng NomeDoArquivo_ast.dot -o ast.png && start ast.png
