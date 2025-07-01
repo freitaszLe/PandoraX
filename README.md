@@ -66,6 +66,7 @@ strin    // tipo string
 2. *Executar (+ gera dot):*
    ```bash
    java -jar antlr4-4.13.2-complete.jar -Dlanguage=Python3 -visitor PandoraX.g4
+   pip install llvmlite
    python PandoraX_compilador.py NomeArquivo.pandoraX
 
 2. *Gerar árvore:*
