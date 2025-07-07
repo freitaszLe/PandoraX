@@ -84,9 +84,16 @@ strin    // tipo string
    python PandoraX_compilador.py NomeArquivo.pandoraX --tac
    
 2. *Gerar LLVM e executar:*
+   - Windows:
    ```bash
    python PandoraX_compilador.py NomeArquivo.pandoraX --ll
    clang NomeArquivo.ll -o seu_executavel.exe
    .\seu_executavel.exe
+  - Linxus Ubuntu:
+   ```bash
+   python PandoraX_compilador.py NomeArquivo.pandoraX --ll
+   clang NomeArquivo.ll -o  nomeArquivo
+   chmod +x nomeArquivo
+   ./nomeArquivo
 
 
