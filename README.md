@@ -87,12 +87,12 @@ strin    // tipo string
   - Windows:
    ```bash
    python PandoraX_compilador.py NomeArquivo.pandoraX --ll
-   clang NomeArquivo.ll -o seu_executavel.exe
-   .\seu_executavel.exe
+   clang NomeArquivo.ll -o seu_executavel.exe    OU clang NomeArquivo.ll -o NomeArquivo.exe -llegacy_stdio_definitions.lib
+   .\NomeArquivo.exe
 ```
   - Linxus Ubuntu:
    ```bash
-   python PandoraX_compilador.py NomeArquivo.pandoraX --ll
+   python PandoraX_compilador.py NomeArquivo.pandoraX --llvm
    clang NomeArquivo.ll -o  nomeArquivo
    chmod +x nomeArquivo
    ./nomeArquivo
