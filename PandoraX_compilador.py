@@ -1,24 +1,16 @@
 # compiler.py (Versão com Geração de TAC e LLVM IR)
-
 import sys
 import os
-import argparse # Módulo para argumentos de linha de comando
-
+import argparse 
 from antlr4 import FileStream, CommonTokenStream
-
-# Importa as classes geradas pelo ANTLR
 from PandoraXLexer import PandoraXLexer
 from PandoraXParser import PandoraXParser
-
-# Importa os nossos módulos separados
 from utils import print_tokens
 from error_listeners import PandoraXLexerErrorListener, PandoraXErrorListener
 from ast_generator import PandoraXASTGenerator
 from PandoraXSemanticAnalyzer import PandoraXSemanticAnalyzer 
 from pandorax_executor import PandoraX_executor                 
 from tac_generator import TACGenerator
-
-# --- NOVO: Importa o gerador de LLVM ---
 from llvm_generator import LLVMGenerator
 
 # =====================================================================
@@ -26,7 +18,7 @@ from llvm_generator import LLVMGenerator
 # =====================================================================
 
 def main():
-    # --- ALTERADO: Adicionada a opção --llvm ---
+
     parser = argparse.ArgumentParser(description="Compilador para a linguagem PandoraX.")
     parser.add_argument('input_file', help='O arquivo .pandoraX a ser compilado.')
     parser.add_argument('--tac', action='store_true', help='Gera e salva o Código de Três Endereços (TAC).')
@@ -37,8 +29,7 @@ def main():
     print(f"Compilando o arquivo: {input_file}")
 
     try:
-        # Fases 1, 2, 3 e 4 (Análises) continuam iguais
-        # ...
+
         input_stream = FileStream(input_file, encoding='utf-8')
         lexer = PandoraXLexer(input_stream)
         lexer.removeErrorListeners()
@@ -75,7 +66,7 @@ def main():
         else:
             print("✅ Análise semântica concluída com sucesso.")
 
-        # --- ALTERADO: Estrutura condicional para as etapas finais ---
+
         
         # Etapa 5: Geração de Código Intermediário (Sempre ocorre se uma flag de compilação for usada)
         # O TAC é a base para a geração de código final.
