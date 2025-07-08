@@ -1,100 +1,221 @@
+# 🧙‍♂️ PandoraX Compiler
 
-# 🧙‍♂️ PandoraX: A Linguagem de Programação do Desconhecido
+**Um compilador completo, do código-fonte a um executável nativo, para uma linguagem mágica criada do zero.**
 
-**PandoraX** é uma linguagem de programação personalizada, desenvolvida como parte do projeto final da disciplina de Construção de Compiladores (2025/1). Inspirada em uma temática mágica, PandoraX oferece uma experiência de escrita de código parecida com Python, com uma gramática própria e recursos de controle de fluxo, tipos primitivos e análise semântica.
+**PandoraX** é uma linguagem de programação imperativa e com tipagem estática, desenvolvida como projeto final da disciplina de Construção de Compiladores (2025/1). Este repositório contém não apenas a especificação da linguagem, mas também seu compilador completo, capaz de transformar código PandoraX em executáveis nativos.
 
-Este projeto envolve o desenvolvimento de um compilador completo para a linguagem, incluindo as etapas de análise léxica, análise sintática, análise semântica, geração de AST e execução interpretada.
+## 📜 Tabela de Conteúdos
 
+1.  [Sobre o Projeto](https://www.google.com/search?q=%23-sobre-o-projeto)
+2.  [Arquitetura do Compilador](https://www.google.com/search?q=%23-arquitetura-do-compilador)
+3.  [Funcionalidades da Linguagem](https://www.google.com/search?q=%23-funcionalidades-da-linguagem)
+4.  [Tecnologias Utilizadas](https://www.google.com/search?q=%23-tecnologias-utilizadas)
+5.  [Como Usar](https://www.google.com/search?q=%23-como-usar)
+6.  [Exemplo de Código](https://www.google.com/search?q=%23-exemplo-de-c%C3%B3digo)
+7.  [Autores](https://www.google.com/search?q=%23-autores)
 
-## 🎯 Objetivo do Projeto
+## 🎯 Sobre o Projeto
 
-O principal objetivo deste projeto é compreender e aplicar os conceitos fundamentais da construção de compiladores. Para isso, foi criada a linguagem PandoraX, permitindo:
-- Definir uma gramática personalizada.
-- Implementar analisadores léxico, sintático e semântico.
-- Gerar e interpretar uma árvore sintática abstrata (AST).
-- Fornecer mensagens de erro claras durante as análises.
-- A execução do código pode ser feita de forma interpretada (diretamente pela árvore gerada) ou convertida em uma linguagem de mais baixo nível, como Python.
+O objetivo deste projeto foi aplicar na prática os conceitos fundamentais da construção de compiladores. O resultado é um pipeline de compilação completo que inclui:
+
+  - **Análise Lexica, Sintática e Semântica** para validar o código-fonte.
+  - Geração de **Árvore Sintática Abstrata (AST)** e sua visualização com Graphviz.
+  - Geração de **Código Intermediário** no formato de Código de Três Endereços (TAC).
+  - Geração de **Código Final** em LLVM Intermediate Representation (IR).
+  - Compilação do código LLVM IR para um **executável nativo** usando Clang.
+
+## ⛓️ Arquitetura do Compilador
+
+O compilador processa o código em um fluxo de múltiplas etapas:
+
+```
+Código Fonte (.pandoraX)
+       |
+       v
+[ Frontend do Compilador (Python) ]
+ |--> Análise Léxica (Tokens)
+ |--> Análise Sintática (AST)
+ |--> Análise Semântica (Tabela de Símbolos)
+       |
+       v
+[ Backend do Compilador (Python) ]
+ |--> Geração de Código Intermediário (TAC)
+ |--> Geração de Código Final (LLVM IR)
+       |
+       v
+Arquivo de Código LLVM (.ll)
+       |
+       v
+[ Compilador Externo (Clang) ]
+ |--> Compilação e Linkedição
+       |
+       v
+Programa Executável (.exe)
+```
 
 ## ✨ Funcionalidades da Linguagem
-- 🔸 Tipos Primitivos
-- ✅ inter (inteiro)
-- ✅ strin (string)
-- ✅ bool (booleano)
 
-- 🔸 Entrada e Saída
-- 📥 Entrada com o comando summon.x
-- 📤 Saída com o comando compandora.expose
+  - **Tipos Primitivos:**
 
-- 🔸 Controle de Fluxo
-- 🔁 Estrutura de repetição com loopX
-- 🔀 Condicional com when e whenever
+      - `inter`: Números inteiros.
+      - `strin`: Sequência de caracteres (delimitada por `<` e `>`).
+      - `bool`: Valores `true` ou `false`.
 
-- 🔸 Expressões Suportadas
-- ➕ Aritméticas: +, -, *, /
-- ⚖️ Comparações: ==, !=, >, <, >=, <=
-- 🔀 Lógicas: and, or, not
+  - **Entrada e Saída:**
 
-- 🔸 Compilador
-- 🧾 Analisador Léxico: Geração de tokens a partir do código-fonte
-- 🌲 Analisador Sintático: Geração da AST com base na gramática definida
-- 🧠 Analisador Semântico: Verificação de tipos, declarações e operações
-- 📊 Visualização da AST com Graphviz
-- ❗ Detecção de erros léxicos, sintáticos e semânticos com mensagens explicativas
-  
----
+      - `summon.x(<prompt>)`: Lê um valor do teclado do usuário.
+      - `pandora.expose(<mensagem>)`: Imprime uma mensagem na tela, com suporte para interpolação de variáveis (ex: `<Olá, {nome}>`).
 
-## Tecnologias Usadas
+  - **Controle de Fluxo:**
 
-- *Python:* Linguagem principal para a implementação do compilador.
-- *Lark/ANTLR:* Ferramentas de parsing (a serem escolhidas de acordo com a implementação).
-- *GitHub Actions:* Para integração contínua (opcional).
+      - `when <condição> { ... }`: Estrutura condicional "se".
+      - `whenever { ... }`: Estrutura condicional "senão".
 
-## 📚 Sintaxe da Linguagem
+  - **Expressões Suportadas:**
 
-### 🧾 Tipos
+      - **Aritméticas:** `+`, `-`, `*`, `/`
+      - **Comparações:** `==`, `!=`, `>`, `<`, `>=`, `<=`
+      - **Lógicas:** `and`, `or`, `not`
+
+## 🛠️ Tecnologias Utilizadas
+
+  - **Python 3:** Linguagem principal para a implementação de todas as fases do compilador.
+  - **ANTLR4:** Ferramenta geradora de parser que lê nossa gramática (`.g4`) e cria o Analisador Léxico e Sintático.
+  - **llvmlite:** Biblioteca Python que fornece bindings para a API do LLVM, permitindo a construção programática de código LLVM IR.
+  - **LLVM / Clang:** Infraestrutura de compilação utilizada como backend final para otimizar e compilar o código LLVM IR em um executável nativo.
+  - **Graphviz:** Ferramenta para visualizar a Árvore Sintática Abstrata a partir dos arquivos `.dot` gerados.
+
+## 🚀 Como Usar
+
+Siga estes passos para configurar o ambiente e executar o compilador.
+
+### 1\. Pré-requisitos
+
+Garanta que você tenha as seguintes ferramentas instaladas e configuradas no `PATH` do seu sistema:
+
+  - **Python** (versão 3.8+)
+  - **Java** (JDK/JRE, versão 11+ para rodar o ANTLR)
+  - **Git** (para clonar o repositório)
+  - **LLVM e Clang** (instalador do site oficial do LLVM)
+  - **Graphviz** (para visualizar a AST)
+
+### 2\. Instalação do Projeto
+
+1.  **Clone o repositório:**
+
+    ```bash
+    git clone https://github.com/freitaszLe/PandoraX.git
+    cd seu-repositorio
+    ```
+
+2.  **Crie e ative um ambiente virtual (Recomendado):**
+
+    ```bash
+    # Criar o ambiente
+    python -m venv venv
+
+    # Ativar no Windows (PowerShell)
+    .\venv\Scripts\activate
+
+    # Ativar no Linux/macOS
+    source venv/bin/activate
+    ```
+
+3.  **Instale as dependências Python:**
+
+    ```bash
+    pip install antlr4-python3-runtime llvmlite
+    ```
+
+4.  **Gere o Parser com ANTLR:**
+    (Você só precisa fazer isso uma vez ou sempre que alterar o arquivo `.g4`)
+
+    ```bash
+    java -jar antlr4-4.13.2-complete.jar -Dlanguage=Python3 -visitor PandoraX.g4
+    ```
+
+### 3\. Fluxo de Compilação e Execução
+
+Use o `PandoraX_compilador.py` com diferentes flags para cada etapa.
+
+#### Modo 1: Gerar Código Intermediário (TAC)
+
+Gera um arquivo `.tac` com as instruções de três endereços.
+
+```bash
+python PandoraX_compilador.py seu_arquivo.pandoraX --tac
+```
+
+#### Modo 2: Gerar, Compilar e Executar (LLVM)
+
+Este é o fluxo completo para criar um executável.
+
+1.  **Gere o código LLVM IR (`.ll`):**
+
+    ```bash
+    python PandoraX_compilador.py seu_arquivo.pandoraX --llvm
+    ```
+
+2.  **Compile o `.ll` com Clang e crie o executável:**
+
+      * **No Windows (usando o `x64 Native Tools Command Prompt`):**
+        ```bash
+        clang seu_arquivo.ll -o programa.exe -llegacy_stdio_definitions.lib
+        ```
+      * **No Linux (Ubuntu):**
+        ```bash
+        clang seu_arquivo.ll -o programa
+        ```
+
+3.  **Execute seu programa final:**
+
+      * **No Windows:**
+        ```bash
+        programa.exe
+        ```
+      * **No Linux:**
+        ```bash
+        ./programa
+        ```
+
+#### Utilidade: Visualizar a Árvore Sintática (AST)
+
+O compilador sempre gera um arquivo `_ast.dot`. Para convertê-lo em uma imagem:
+
+```bash
+dot -Tpng seu_arquivo_ast.dot -o arvore.png
+```
+
+## 📝 Exemplo de Código
+
+`exemplo_interativo.pandoraX`
 
 ```pandorax
-inter    // tipo inteiro
-strin    // tipo string
+// Classificação de Triângulos com input do usuário
+
+inter a = inter(summon.x(<Digite o lado A: >))
+inter b = inter(summon.x(<Digite o lado B: >))
+inter c = inter(summon.x(<Digite o lado C: >))
+
+when (a + b > c) and (a + c > b) and (b + c > a) {
+    when a == b and b == c {
+        pandora.expose(<Triângulo equilátero válido>)
+    }
+    whenever {
+        when a == b or a == c or b == c {
+            pandora.expose(<Triângulo isósceles válido>)
+        }
+        whenever {
+            pandora.expose(<Triângulo escaleno válido>)
+        }
+    }
+}
+whenever {
+    pandora.expose(<Medidas inválidas para um triângulo.>)
+}
 ```
 
-## Como Usar
+## 👥 Autores
 
-1. *Clonar o repositório:*
-   ```bash
-   git clone https://github.com/seu-usuario/pandora-compilador.git
-2. *Preparar o ambiente:*
-   ```bash
-   java -jar antlr4-4.13.2-complete.jar -Dlanguage=Python3 -visitor PandoraX.g4
-   pip install llvmlite
-   winget install LLVM.LLVM
-   
-2. *Gerar árvore:*
-   ```bash
-   dot -Tpng NomeDoArquivo_ast.dot -o ast.png && start ast.png
-   ou
-   "C:\Program Files\Graphviz\bin\dot.exe" -Tpng ClassificadorTriangulo_ast.dot -o arvore_sintatica.png
-   
-2. *Executar:*
-   ```bash
-   python PandoraX_compilador.py NomeArquivo.pandoraX
-
-2. *Gerar TAC:*
-   ```bash
-   python PandoraX_compilador.py NomeArquivo.pandoraX --tac
-   
-2. *Gerar LLVM e executar:*
-  - Windows:
-   ```bash
-   python PandoraX_compilador.py NomeArquivo.pandoraX --ll
-   clang NomeArquivo.ll -o seu_executavel.exe    OU clang NomeArquivo.ll -o NomeArquivo.exe -llegacy_stdio_definitions.lib
-   .\NomeArquivo.exe
-```
-  - Linxus Ubuntu:
-   ```bash
-   python PandoraX_compilador.py NomeArquivo.pandoraX --llvm
-   clang NomeArquivo.ll -o  nomeArquivo
-   chmod +x nomeArquivo
-   ./nomeArquivo
-
-
+  - Leticia Arruda de Freitas
+  - Anthony Gabriel Oliveira Cruz
