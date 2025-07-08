@@ -6,7 +6,7 @@
 
 ## 📜 Tabela de Conteúdos
 
-1.  [Sobre o Projeto](https://www.google.com/search?q=%23-sobre-o-projeto)
+1.  [Sobre o Projeto](sobre-o-projeto)
 2.  [Arquitetura do Compilador](https://www.google.com/search?q=%23-arquitetura-do-compilador)
 3.  [Funcionalidades da Linguagem](https://www.google.com/search?q=%23-funcionalidades-da-linguagem)
 4.  [Tecnologias Utilizadas](https://www.google.com/search?q=%23-tecnologias-utilizadas)
