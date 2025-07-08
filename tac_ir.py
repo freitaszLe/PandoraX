@@ -43,5 +43,9 @@ class TACInstruction:
         elif self.opcode == 'PRINT':
             return f"print {self.arg1}"
             
+        # Leitura do teclado
+        elif self.opcode == 'SUMMON':
+            return f"{self.result} = summon {self.arg1}"
+            
         # Se nenhum formato for reconhecido, mostra o opcode para depuração
         return f"opcode_desconhecido({self.opcode})"

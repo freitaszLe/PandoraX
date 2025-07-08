@@ -1,8 +1,7 @@
-# llvm_generator.py (Versão Final e Completa)
+# llvm_generator.py (Versão Final e Completa com Input do Usuário)
 
 from llvmlite import ir, binding
 from tac_ir import TACInstruction, TACOperand
-# import ctypes # ctypes não é estritamente necessário para esta implementação
 
 class LLVMGenerator:
     def __init__(self, tac_code):
@@ -12,12 +11,13 @@ class LLVMGenerator:
         self.symbol_table = {}
         self.builder = None
 
-        # --- ALTERAÇÃO 1: Declarar a função externa 'printf' ---
-        # Define a assinatura da função: i32 printf(i8*, ...)
-        # i8* é um ponteiro para char (uma string em C)
-        # var_arg=True permite que a função tenha um número variável de argumentos
+        # Declara a função externa 'printf'
         printf_type = ir.FunctionType(self.int_type, [ir.IntType(8).as_pointer()], var_arg=True)
         self.printf = ir.Function(self.module, printf_type, name="printf")
+        
+        # --- ALTERAÇÃO 1: Declarar a função externa 'scanf' ---
+        scanf_type = ir.FunctionType(self.int_type, [ir.IntType(8).as_pointer()], var_arg=True)
+        self.scanf = ir.Function(self.module, scanf_type, name="scanf")
         # ----------------------------------------------------
 
     def _get_var_ptr(self, var_name):
@@ -26,6 +26,22 @@ class LLVMGenerator:
             ptr = self.builder.alloca(self.int_type, name=var_name)
             self.symbol_table[var_name] = ptr
         return self.symbol_table[var_name]
+
+    # --- ALTERAÇÃO 2: Função auxiliar para criar strings globais ---
+    def _create_global_string(self, text_val, name_prefix="str"):
+        """Cria uma string global no módulo e retorna um ponteiro i8* para ela."""
+        text_bytes = bytearray((text_val + '\0').encode('utf8'))
+        string_type = ir.ArrayType(ir.IntType(8), len(text_bytes))
+        
+        # Cria a variável global para a string
+        global_var = ir.GlobalVariable(self.module, string_type, name=f"{name_prefix}_{len(self.module.globals)}")
+        global_var.initializer = ir.Constant(string_type, text_bytes)
+        global_var.linkage = 'internal'
+        global_var.global_constant = True
+        
+        # Retorna um ponteiro para o primeiro elemento do array (i8*)
+        return global_var.gep([ir.Constant(self.int_type, 0), ir.Constant(self.int_type, 0)])
+    # -----------------------------------------------------------
 
     def generate(self):
         main_func_type = ir.FunctionType(self.int_type, [], False)
@@ -37,6 +53,9 @@ class LLVMGenerator:
             instr.result.name: main_func.append_basic_block(name=instr.result.name)
             for instr in self.tac_code if instr.opcode == 'LABEL'
         }
+
+        # Criar a string de formato "%d" para o scanf uma única vez
+        scanf_format_ptr = self._create_global_string("%d", "scanf_fmt")
 
         for instr in self.tac_code:
             if instr.opcode == 'COPY':
@@ -95,33 +114,31 @@ class LLVMGenerator:
                 self.builder.position_at_end(true_block)
 
             elif instr.opcode == 'PRINT':
-                # Pega o texto e o prepara como uma string C (com \n e \0)
-                text = instr.arg1.name[1:-1]
-                text_to_print = text + "\n\0"
+                text = instr.arg1.name[1:-1] # Remove aspas <>
+                text_ptr = self._create_global_string(text + '\n', "print_str")
+                self.builder.call(self.printf, [text_ptr])
+
+            # --- ALTERAÇÃO 3: Adicionar a lógica para SUMMON ---
+            elif instr.opcode == 'SUMMON':
+                # 1. Imprime o prompt na tela
+                prompt_text = instr.arg1.name[1:-1]
+                prompt_ptr = self._create_global_string(prompt_text + " ", "prompt_str")
+                self.builder.call(self.printf, [prompt_ptr])
+
+                # 2. Aloca espaço para o scanf preencher
+                input_buffer_ptr = self.builder.alloca(self.int_type, name="input_buffer")
+
+                # 3. Chama scanf("%d", &input_buffer)
+                self.builder.call(self.scanf, [scanf_format_ptr, input_buffer_ptr])
+
+                # 4. Carrega o valor lido do buffer
+                read_value = self.builder.load(input_buffer_ptr)
                 
-                # Codifica a string para uma sequência de bytes
-                text_bytes = bytearray(text_to_print.encode("utf8"))
-                
-                # --- A CORREÇÃO ESTÁ AQUI ---
-                
-                # 1. Primeiro, criamos o tipo de dado correto (um array de bytes do tamanho exato)
-                string_type = ir.ArrayType(ir.IntType(8), len(text_bytes))
-                
-                # 2. Depois, criamos a constante com os dados e o tipo correto
-                string_const = ir.Constant(string_type, text_bytes)
-                
-                # 3. Finalmente, alocamos memória do MESMO TIPO da constante
-                str_ptr = self.builder.alloca(string_type)
-                
-                # 4. Agora os tipos são idênticos e o store funciona
-                self.builder.store(string_const, str_ptr)
-                
-                # Converte o ponteiro para o tipo genérico i8* que printf espera
-                char_ptr = self.builder.bitcast(str_ptr, ir.IntType(8).as_pointer())
-                
-                # Chama a função printf
-                self.builder.call(self.printf, [char_ptr])
-        # Finaliza a função
+                # 5. Armazena o valor lido na variável de destino do TAC (ex: _t0)
+                dest_ptr = self._get_var_ptr(instr.result.name)
+                self.builder.store(read_value, dest_ptr)
+            # ----------------------------------------------------
+
         if not self.builder.block.is_terminated:
             self.builder.ret(ir.Constant(self.int_type, 0))
             
