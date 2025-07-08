@@ -6,13 +6,13 @@
 
 ## 📜 Tabela de Conteúdos
 
-1.  [Sobre o Projeto](sobre-o-projeto)
-2.  [Arquitetura do Compilador](https://www.google.com/search?q=%23-arquitetura-do-compilador)
-3.  [Funcionalidades da Linguagem](https://www.google.com/search?q=%23-funcionalidades-da-linguagem)
-4.  [Tecnologias Utilizadas](https://www.google.com/search?q=%23-tecnologias-utilizadas)
-5.  [Como Usar](https://www.google.com/search?q=%23-como-usar)
-6.  [Exemplo de Código](https://www.google.com/search?q=%23-exemplo-de-c%C3%B3digo)
-7.  [Autores](https://www.google.com/search?q=%23-autores)
+1. [Sobre o Projeto](#-sobre-o-projeto)
+2. [Arquitetura do Compilador](#️-arquitetura-do-compilador)
+3. [Funcionalidades da Linguagem](#-funcionalidades-da-linguagem)
+4. [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+5. [Como Usar](#-como-usar)
+6. [Exemplo de Código](#-exemplo-de-código)
+7. [Autores](#-autores)
 
 ## 🎯 Sobre o Projeto
 
